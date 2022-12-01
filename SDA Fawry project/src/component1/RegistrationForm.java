@@ -18,6 +18,7 @@ public class RegistrationForm {
 		password = input.next();
 		currentUser = regestrationController.checkUserExistence(mail, password);
 		if(currentUser != null) {
+			System.out.println("Done, user "+currentUser.getName()+ " logged in!");
 			return currentUser;
 		}
 		System.out.println("Wrong password or there is no such user");

@@ -20,10 +20,8 @@ public class RegistrationController {
 	}
 	public User checkUserExistence(String userMail, String userPassword)
 	{
-		System.out.println(usersDatabase.users.size());
 		for(int i=0; i<usersDatabase.users.size(); i++) {
 			if(usersDatabase.users.get(i).getMail().equals(userMail) && usersDatabase.users.get(i).getPassword().equals(userPassword) ) {
-				System.out.println("yes");
 				return usersDatabase.users.get(i);
 			}
 		}
