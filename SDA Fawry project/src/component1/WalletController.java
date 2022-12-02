@@ -32,7 +32,6 @@ public class WalletController extends TransactionController{
 			 AddToWallet addToWalletTransaction = new AddToWallet();
 			 addToWalletTransaction.setAmount(amount);
 			 addToWalletTransaction.setUser(user);
-			
 			transactionDataBase.transactions.add(addToWalletTransaction);
 			 return true;
 		}

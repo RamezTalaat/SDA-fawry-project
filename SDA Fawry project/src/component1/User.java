@@ -63,5 +63,8 @@ public class User {
     {
     	return creditCard;
     }
-    
+    public userType getType()
+    {
+    	return type;
+    }
 }
