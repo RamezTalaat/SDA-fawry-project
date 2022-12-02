@@ -29,5 +29,8 @@ public class Services {
 	public void getServices(Services services) 
 	{
 		System.out.println("Type: ");
+		String name;
+		name = input.next();
+		
 	}
 }
