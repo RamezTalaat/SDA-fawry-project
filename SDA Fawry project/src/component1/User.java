@@ -1,17 +1,21 @@
 package component1;
+import java.util.Random;
 
 public class User {
     private String name;
     private String password;
     private String mail;
-    private String Type;
+    private int creditCard;
+    //private String Type;
     int ID;
-    Wallet wallet ;
     static int idCount = 1;
+    Random random = new Random();
+    Wallet wallet ;
     public User()
     {
         ID = idCount++;
         wallet = new Wallet();
+        creditCard = random.nextInt(1000, 10000); // Generates random amount of money in the user's credit card between 1000 EGP and 10000 EGP
     }
     public void setName(String name_)
     {
@@ -36,5 +40,9 @@ public class User {
     public String getMail()
     {
     	return mail;
+    }
+    public int getCreditCard()
+    {
+    	return creditCard;
     }
 }
