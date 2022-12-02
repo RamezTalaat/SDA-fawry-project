@@ -38,7 +38,7 @@ public class FawryInterface {
 		System.out.println("5- Exit");
 		System.out.println("Option:- ");
 		option = 0;
-		while(option != 5) {
+		while(true) {
 			option = input.nextInt();
 			if(option == 1) {
 				System.out.println("User name = " + currentUser.getName());
@@ -75,7 +75,10 @@ public class FawryInterface {
 			else if(option == 4) {
 				
 			}
-			else if(option != 5){
+			else if(option == 5) {
+				return;
+			}
+			else{
 				System.out.println("Sorry, invalid option");
 			}
 			System.out.println("Choose another option:- ");
