@@ -16,7 +16,7 @@ public class WalletController extends TransactionController{
 		return new AddToWallet();
 	}
 	@Override
-	public Boolean makeTransaction(User user, int amount) {
+	public Boolean makeTransaction(User user, int amount , Transaction transaction) {
 		// TODO Auto-generated method stub
 		if(user.getCreditCard()>=amount) {
 			 user.wallet.setAmount(user.wallet.getAmount()+amount);
@@ -25,17 +25,6 @@ public class WalletController extends TransactionController{
 		}
 		return false;
 	}
-	/*public boolean addMoneyToWallet(User user,int amount){
-		if(user.getCreditCard()>=amount) {
-			 user.wallet.setAmount(user.wallet.getAmount()+amount);
-			 user.setCreditCard(user.getCreditCard()-amount);
-			 AddToWallet addToWalletTransaction = new AddToWallet();
-			 addToWalletTransaction.setAmount(amount);
-			 addToWalletTransaction.setUser(user);
-			transactionDataBase.transactions.add(addToWalletTransaction);
-			 return true;
-		}
-	    return false;
-	}*/
+	
 
 }

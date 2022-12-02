@@ -1,0 +1,33 @@
+package component1;
+
+
+
+public class RefundController extends TransactionController{
+	TransactionDataBase transactionDataBase;
+	public RefundController(TransactionDataBase _transactionDataBase) {
+		super(_transactionDataBase);
+		// TODO Auto-generated constructor stub
+	}
+	
+
+	@Override
+	public Transaction createTransaction() {
+		// TODO Auto-generated method stub
+		return  new RefundTransaction();
+	}
+	@Override
+	public Boolean makeTransaction(User user, int amount ,Transaction transaction) {
+		// TODO Auto-generated method stub
+		Boolean state  = false;
+		user.setCreditCard(user.getCreditCard()+amount);
+		for (int i = 0; i < transactionDataBase.transactions.size(); i++) {
+			if(transactionDataBase.transactions.get(i) == transaction)
+			{
+				transactionDataBase.transactions.remove(i);       //to remove the deleted transaction from transactions database
+				state = true;
+			}
+		}
+		
+		return state;
+	}
+}

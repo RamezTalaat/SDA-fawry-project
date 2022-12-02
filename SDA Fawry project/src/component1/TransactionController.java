@@ -5,8 +5,8 @@ public abstract  class TransactionController {
 	public TransactionController (TransactionDataBase _transactionDataBase) {
 		transactionDatabase = _transactionDataBase;
 	}
-	public Boolean setTransaction(User user, int amount) {
-		Boolean state =makeTransaction(user,amount);
+	public Boolean setTransaction(User user, int amount , Transaction _transaction) {
+		Boolean state =makeTransaction(user,amount,_transaction);
 		if (state) {
 			Transaction transaction = createTransaction();
 			transaction.setAmount(amount);
@@ -17,7 +17,7 @@ public abstract  class TransactionController {
 		// if true or false
 		
 	}
-	public abstract Boolean makeTransaction(User user, int amount);  
+	public abstract Boolean makeTransaction(User user, int amount , Transaction transaction);  
 	public abstract Transaction createTransaction();  
 	public void addTransactionToDatabase(Transaction transaction) {
 		transactionDatabase.addTransaction(transaction);

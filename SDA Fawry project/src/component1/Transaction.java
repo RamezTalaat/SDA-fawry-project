@@ -1,9 +1,17 @@
 package component1;
+enum transactionType
+{
+	paymentTransaction,
+	refundTransaction,
+	walletTransaction
+}
+
 
 public abstract class Transaction {
 	 User user;
 	 int amount;
 	 String service;
+	 transactionType type;
 	
 	 public void setAmount(int _amount){
 		 amount = _amount;
