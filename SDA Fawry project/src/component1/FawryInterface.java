@@ -7,6 +7,7 @@ public class FawryInterface {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
+		TransactionDataBase transacionDataBase = new TransactionDataBase();
 		RegistrationForm registrationForm = new RegistrationForm();
 		User currentUser = null;
 		System.out.println("Welcome to our fawry system!");
@@ -50,7 +51,7 @@ public class FawryInterface {
 				
 			}
 			else if(option == 3) {
-				WalletForm walletForm = new WalletForm();
+				WalletForm walletForm = new WalletForm(transacionDataBase);
 				walletForm.getWalletForm(currentUser);
 			}
 			else {
