@@ -24,7 +24,6 @@ public class FawryInterface {
 				currentUser = registrationForm.signUp();
 			}
 			else if(option == 3) {
-
 				break;
 			}
 			else {
@@ -33,12 +32,13 @@ public class FawryInterface {
 		}
 		System.out.println("Please choose one of the following options:-");
 		System.out.println("1- Print current user information");
-		System.out.println("2- Sign in with another user");
+		System.out.println("2- Log out and sign in with another user");
 		System.out.println("3- Add money to your wallet");
-		System.out.println("4- Exit");
+		System.out.println("4- Request a refund for a completed transaction");
+		System.out.println("5- Exit");
 		System.out.println("Option:- ");
 		option = 0;
-		while(option != 4) {
+		while(option != 5) {
 			option = input.nextInt();
 			if(option == 1) {
 				System.out.println("User name = " + currentUser.getName());
@@ -47,20 +47,39 @@ public class FawryInterface {
 				System.out.println("User credit card balance = " + currentUser.getCreditCard());
 			}
 			else if(option == 2) {
-				
-				
+				System.out.println("User "+currentUser.getName()+" logged out");
+				currentUser = null;
+				while(currentUser == null) {
+					System.out.println("1- Sign in");
+					System.out.println("2- Sign up");
+					System.out.println("3- Exit");
+					option = input.nextInt();
+					if(option == 1) {
+						currentUser = registrationForm.signIn();
+					}
+					else if(option == 2) {
+						currentUser = registrationForm.signUp();
+					}
+					else if(option == 3) {
+						return;
+					}
+					else {
+						System.out.println("Sorry, invalid option");
+					}
+				}
 			}
 			else if(option == 3) {
 				WalletForm walletForm = new WalletForm(transacionDataBase);
 				walletForm.getWalletForm(currentUser);
 			}
-			else {
+			else if(option == 4) {
+				
+			}
+			else if(option != 5){
 				System.out.println("Sorry, invalid option");
 			}
 			System.out.println("Choose another option:- ");
 		}
-		
-		
 	}
 
 }
