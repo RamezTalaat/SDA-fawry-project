@@ -1,11 +1,31 @@
 package component1;
 
-public class WalletController {
-	TransactionDataBase transactionDataBase;
-	public WalletController (TransactionDataBase transactionDataBase_) {
-		transactionDataBase = transactionDataBase_;
+public class WalletController extends TransactionController{
+	public WalletController(TransactionDataBase _transactionDataBase) {
+		super(_transactionDataBase);
+		// TODO Auto-generated constructor stub
 	}
-	public boolean addMoneyToWallet(User user,int amount){
+	TransactionDataBase transactionDataBase;
+	/*public WalletController (TransactionDataBase transactionDataBase_) {
+		transactionDataBase = transactionDataBase_;
+	}*/
+	@Override
+	public Transaction createTransaction() {
+		// TODO Auto-generated method stub
+		
+		return new AddToWallet();
+	}
+	@Override
+	public Boolean makeTransaction(User user, int amount) {
+		// TODO Auto-generated method stub
+		if(user.getCreditCard()>=amount) {
+			 user.wallet.setAmount(user.wallet.getAmount()+amount);
+			 user.setCreditCard(user.getCreditCard()-amount);
+			 return true;
+		}
+		return false;
+	}
+	/*public boolean addMoneyToWallet(User user,int amount){
 		if(user.getCreditCard()>=amount) {
 			 user.wallet.setAmount(user.wallet.getAmount()+amount);
 			 user.setCreditCard(user.getCreditCard()-amount);
@@ -17,6 +37,6 @@ public class WalletController {
 			 return true;
 		}
 	    return false;
-	}
+	}*/
 
 }
