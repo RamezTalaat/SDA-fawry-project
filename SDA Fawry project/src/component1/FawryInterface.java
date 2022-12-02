@@ -23,6 +23,7 @@ public class FawryInterface {
 				currentUser = registrationForm.signUp();
 			}
 			else if(option == 3) {
+
 				break;
 			}
 			else {
@@ -48,7 +49,8 @@ public class FawryInterface {
 				
 			}
 			else if(option == 3) {
-				
+				WalletForm walletForm = new WalletForm();
+				walletForm.getWalletForm(currentUser);
 			}
 			else {
 				System.out.println("Sorry, invalid option");

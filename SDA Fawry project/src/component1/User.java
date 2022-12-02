@@ -29,6 +29,10 @@ public class User {
     {
     	mail = mail_;
     }
+    public void setCreditCard(int creditCard_)
+    {
+    	creditCard=creditCard_;
+    }
     public String getName()
     {
     	return name;
@@ -45,4 +49,5 @@ public class User {
     {
     	return creditCard;
     }
+    
 }

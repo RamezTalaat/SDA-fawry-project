@@ -1,17 +1,17 @@
 package component1;
 
 public class Wallet {
-    private Double amount;
+    private int amount;
     public Wallet()
     {
-        amount = 0.0;
+        amount = 0;
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
+    public void setAmount(int amount_) {
+    	amount = amount_;
     }
 
-    public Double getAmount() {
+    public int getAmount() {
         return amount;
     }
 }
