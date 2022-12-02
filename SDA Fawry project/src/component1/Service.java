@@ -26,7 +26,7 @@ public class Service {
 	{
 		return type;
 	}
-	public void getServices(Services services) 
+	public void getServices(Service service) 
 	{
 		System.out.println("Type: ");
 		String name;

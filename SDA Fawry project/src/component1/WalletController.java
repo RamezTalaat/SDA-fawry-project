@@ -9,9 +9,11 @@ public class WalletController {
 		if(user.getCreditCard()>=amount) {
 			 user.wallet.setAmount(user.wallet.getAmount()+amount);
 			 user.setCreditCard(user.getCreditCard()-amount);
-			 Transaction transaction = new AddToWallet();
+			 AddToWallet addToWalletTransaction = new AddToWallet();
+			 addToWalletTransaction.setAmount(amount);
+			 addToWalletTransaction.setUser(user);
 			
-			// transactionDataBase.transactions.add();
+			transactionDataBase.transactions.add(addToWalletTransaction);
 			 return true;
 		}
 	    return false;

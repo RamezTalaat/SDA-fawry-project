@@ -1,9 +1,9 @@
 package component1;
 
 public class AddToWallet extends Transaction{
-	Transaction transaction;
+	private Transaction transaction;
 	public String type = "Add to wallet" ;
-	User user;
+	private User user;
 	int amount;
 	public void setUser (User user_) {
 		user = user_;

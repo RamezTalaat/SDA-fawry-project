@@ -4,4 +4,5 @@ public abstract class Transaction {
 	 User user;
 	 float amount;
 	 String service;
+	
 }
