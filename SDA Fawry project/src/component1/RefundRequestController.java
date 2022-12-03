@@ -8,9 +8,6 @@ public class RefundRequestController {
 	}
 	public boolean makeRefundRequest(int option, User user)
 	{
-		if(option > user.transactions.size()) {
-			return false;
-		}
 		RefundRequest refundRequest = new RefundRequest(user, user.transactions.get(option-1));
 		refundRequestDatabase.refundRequests.add(refundRequest);
 		return true;
@@ -23,5 +20,12 @@ public class RefundRequestController {
 			}
 		}
 		return false;
+	}
+	public boolean validateOption(int option, User user)
+	{
+		if(option > user.transactions.size()) {
+			return false;
+		}
+		return true;
 	}
 }

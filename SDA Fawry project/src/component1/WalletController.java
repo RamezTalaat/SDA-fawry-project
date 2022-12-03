@@ -3,7 +3,6 @@ package component1;
 public class WalletController extends TransactionController{
 	public WalletController(TransactionDataBase _transactionDataBase) {
 		super(_transactionDataBase);
-		// TODO Auto-generated constructor stub
 	}
 	//TransactionDataBase transactionDataBase;
 	/*public WalletController (TransactionDataBase transactionDataBase_) {

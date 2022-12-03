@@ -6,9 +6,13 @@ import java.util.*;
 public class FawryInterface {
 
 	public static void main(String[] args) {
+		// Admin name: "admin", Admin password: "admin", Admin mail: "admin"
 		Scanner input = new Scanner(System.in);
 		TransactionDataBase transacionDataBase = new TransactionDataBase();
 		RegistrationForm registrationForm = new RegistrationForm();
+		WalletForm walletForm = new WalletForm(transacionDataBase);
+		RefundRequestDatabase refundRequestDatabase = new RefundRequestDatabase();
+		RefundRequestForm refundRequestForm = new RefundRequestForm(refundRequestDatabase);
 		User currentUser = null;
 		System.out.println("Welcome to our fawry system!");
 		int option = 0;
@@ -59,7 +63,7 @@ public class FawryInterface {
 						option = input.nextInt();
 						if(option == 1) {
 							currentUser = registrationForm.signIn();
-							if(currentUser.getType() == userType.admin) break;  // to leave regular users menu and go to admin menu
+							if(currentUser != null && currentUser.getType() == userType.admin) break;  // to leave regular users menu and go to admin menu
 						}
 						else if(option == 2) {
 							currentUser = registrationForm.signUp();
@@ -75,14 +79,13 @@ public class FawryInterface {
 					
 				}
 				case 3:{
-					WalletForm walletForm = new WalletForm(transacionDataBase);
 					walletForm.getWalletForm(currentUser);
 					break;
 					
 				}
 				case 4:{
-					
-					
+					refundRequestForm.getRefundRequestForm(currentUser);
+					break;
 				}
 				case 5:{
 					return;
@@ -147,3 +150,4 @@ public class FawryInterface {
 
 	}
 }
+

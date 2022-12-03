@@ -24,11 +24,12 @@ public class RefundRequestForm {
 			}
 		}
 		int option = input.nextInt();
-		if(refundRequestController.checkTransactionExistence(option, user)) {
-			System.out.println("Sorry, a refund request has been already issued for the choosen transaction");
-			return;
-		}
-		if(refundRequestController.makeRefundRequest(option, user)) {
+		if(refundRequestController.validateOption(option, user)) {
+			if(refundRequestController.checkTransactionExistence(option, user)) {
+				System.out.println("Sorry, a refund request has been already issued for the choosen transaction");
+				return;
+			}
+			refundRequestController.makeRefundRequest(option, user);
 			System.out.println("Done! A refund request has been issued for the chosen transaction");
 		}
 		else {
