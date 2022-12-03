@@ -10,7 +10,7 @@ enum transactionType
 public abstract class Transaction {
 	 User user;
 	 int amount;
-	 String service;
+	 Service service;
 	 transactionType type;
 	
 	 public void setAmount(int _amount){
