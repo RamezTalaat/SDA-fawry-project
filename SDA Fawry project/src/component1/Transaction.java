@@ -19,4 +19,7 @@ public abstract class Transaction {
 	 public void setUser(User _user){
 		 user = _user;
 	 }
+	 public int getAmount() {
+		 return amount;
+	 }
 }
