@@ -11,7 +11,7 @@ public class WalletForm {
 	  System.out.print("Enter the amount of money you want to add ");
 	  int amount;
 	  amount=input.nextInt();
-	  if ( walletController.setTransaction(user , amount,null)) {
+	  if ( walletController.setTransaction(user , amount, null)) {
 		 System.out.println("Wallet is updated succefuly");
 		 System.out.println("Your wallet balance = "+user.wallet.getAmount()+" EGP");
 	 }

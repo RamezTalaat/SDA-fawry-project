@@ -5,7 +5,7 @@ public class WalletController extends TransactionController{
 		super(_transactionDataBase);
 		// TODO Auto-generated constructor stub
 	}
-	TransactionDataBase transactionDataBase;
+	//TransactionDataBase transactionDataBase;
 	/*public WalletController (TransactionDataBase transactionDataBase_) {
 		transactionDataBase = transactionDataBase_;
 	}*/

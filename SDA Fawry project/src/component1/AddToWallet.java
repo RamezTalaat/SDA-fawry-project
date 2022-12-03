@@ -2,9 +2,12 @@ package component1;
 
 public class AddToWallet extends Transaction{
 	private Transaction transaction;
-	public String type = "Add to wallet" ;
 	private User user;
 	int amount;
+	public AddToWallet()
+	{
+		type=  transactionType.walletTransaction;
+	}
 	public void setUser (User user_) {
 		user = user_;
 	}

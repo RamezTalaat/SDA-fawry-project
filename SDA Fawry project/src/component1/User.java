@@ -1,5 +1,6 @@
 package component1;
 import java.util.Random;
+import java.util.Vector;
 
 enum userType
 {
@@ -14,6 +15,7 @@ public class User {
     private userType type;
     int ID;
     static int idCount = 1;
+    Vector<Transaction> transactions;
     Random random = new Random();
     Wallet wallet ;
     public User()
@@ -22,6 +24,7 @@ public class User {
         wallet = new Wallet();
         type = userType.user;
         creditCard = random.nextInt(1000, 10000); // Generates random amount of money in the user's credit card between 1000 EGP and 10000 EGP
+        transactions = new Vector<Transaction>();
     }
     public User(userType _type)
     {
@@ -29,6 +32,7 @@ public class User {
         wallet = new Wallet();
         type = _type;
         creditCard = random.nextInt(1000, 10000); // Generates random amount of money in the user's credit card between 1000 EGP and 10000 EGP
+        transactions = new Vector<Transaction>();
     }
     
     public void setName(String name_)
