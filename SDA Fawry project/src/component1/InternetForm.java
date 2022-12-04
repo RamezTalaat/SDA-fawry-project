@@ -2,7 +2,7 @@ package component1;
 
 import java.util.Scanner;
 
-public class InternetForm implements Form{
+public class InternetForm extends Form{
 
 	int amount;
 	String number;
@@ -15,8 +15,11 @@ public class InternetForm implements Form{
 		number = input.next();
 		System.out.println("Input amount");
 		amount = input.nextInt();
-		
-		
-		
+	}
+
+	@Override
+	public Payment getPaymentMethod() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -120,7 +120,7 @@ public class FawryInterface {
 					break;			
 				}
 				case 3:{
-					TransactionController listerController = new PaymentController(transacionDataBase);
+					TransactionController listerController = new RefundController(transacionDataBase);
 					listerController.listTransactions();
 					break;					
 				}

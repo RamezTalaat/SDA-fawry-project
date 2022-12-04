@@ -2,7 +2,7 @@ package component1;
 
 import java.util.Scanner;
 
-public class DonationsForm implements Form{
+public class DonationsForm extends Form{
 	
 	int amount;
 
@@ -12,8 +12,11 @@ public class DonationsForm implements Form{
 		System.out.println("Input donation amount");
 		Scanner input = new Scanner(System.in);
 		amount = input.nextInt();
-		
-		
-		
+	}
+
+	@Override
+	public Payment getPaymentMethod() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,6 +1,6 @@
 package component1;
 
-public class PaymentController extends TransactionController{
+public abstract class PaymentController extends TransactionController{
 	TransactionDataBase transactionDataBase;
 	public PaymentController(TransactionDataBase _transactionDataBase) {
 		super(_transactionDataBase);
@@ -8,10 +8,7 @@ public class PaymentController extends TransactionController{
 	}
 
 	@Override
-	public Transaction createTransaction() {
-		// TODO Auto-generated method stub
-		return new Payment();
-	}
+	public abstract Transaction createTransaction();
 	@Override
 	public Boolean makeTransaction(User user, int amount, Transaction transaction) {
 		// TODO Auto-generated method stub

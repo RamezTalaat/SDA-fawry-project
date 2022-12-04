@@ -2,7 +2,7 @@ package component1;
 
 import java.util.Scanner;
 
-public class LandlineForm implements Form {
+public class LandlineForm extends Form {
 
 	int amount ;
 	String landlineNumber;
@@ -16,5 +16,10 @@ public class LandlineForm implements Form {
 		System.out.println("Input donation amount");
 		
 		amount = input.nextInt();
+	}
+	@Override
+	public Payment getPaymentMethod() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
