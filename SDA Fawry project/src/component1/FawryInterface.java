@@ -5,10 +5,10 @@ import java.util.*;
 
 public class FawryInterface {
 	static Scanner input = new Scanner(System.in);
-	static TransactionDataBase transacionDataBase = new TransactionDataBase();
+	static TransactionDataBase transacionDataBase =  TransactionDataBase.getInstance();
 	static RegistrationForm registrationForm = new RegistrationForm();
 	static WalletForm walletForm = new WalletForm(transacionDataBase);
-	static RefundRequestDatabase refundRequestDatabase = new RefundRequestDatabase();
+	static RefundRequestDatabase refundRequestDatabase = RefundRequestDatabase.getInstance();
 	static RefundRequestForm refundRequestForm = new RefundRequestForm(refundRequestDatabase);
 	static User currentUser = null;
 	public static void main(String[] args) {
@@ -63,7 +63,8 @@ public class FawryInterface {
 		System.out.println("2- Log out");
 		System.out.println("3- Add money to your wallet");
 		System.out.println("4- Request a refund for a completed transaction");
-		System.out.println("5- Exit");
+		System.out.println("5- List available discounts");
+		System.out.println("6- Exit");
 		System.out.println("Option:- ");
 		int option = 0;
 		while(true) {
@@ -90,6 +91,11 @@ public class FawryInterface {
 					break;
 				}
 				case 5:{
+					DiscountController discountController = new DiscountController();
+					discountController.getDiscounts();
+					break;
+				}
+				case 6:{
 					return;
 				}
 				default:{

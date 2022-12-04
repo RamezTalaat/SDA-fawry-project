@@ -4,7 +4,7 @@ public class RegistrationController {
 	UsersDatabase usersDatabase;
 	public RegistrationController()
 	{
-		usersDatabase=new UsersDatabase();
+		usersDatabase = UsersDatabase.getInstance();
 	}
 	public User addUser(String userName, String userMail, String userPassword)
 	{

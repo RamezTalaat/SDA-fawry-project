@@ -10,17 +10,19 @@ public class AddDiscountForm {
 	protected discountType type;
 	protected	int minimumTransactions , maximumTransactions;
 	protected String service;
-	
+	protected String name;
 	public AddDiscountForm() {
 		minimumTransactions=0;
 		maximumTransactions=0;
 		service ="none";
+		name = "none";
 	}
 	
 	public void getDiscountData() {
 		Scanner input = new Scanner(System.in);
 		int option;
-		
+		System.out.print("Enter discount name : ");
+		name = input.nextLine();
 		System.out.println("Choose Discount type");
 		System.out.println("1- Overall discount		 (for users)");
 		System.out.println("2- Specific discount     (for services)");

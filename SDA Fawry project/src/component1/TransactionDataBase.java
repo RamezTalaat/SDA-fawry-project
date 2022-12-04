@@ -2,7 +2,23 @@ package component1;
 import java.util.Vector;
 
 public class TransactionDataBase {
-	public Vector<Transaction> transactions = new Vector<Transaction>();
+
+	private static TransactionDataBase instance = null;
+	public Vector<Transaction> transactions;
+	
+	private TransactionDataBase() {
+		// TODO Auto-generated constructor stub
+		transactions = new Vector<Transaction>();
+	}
+	
+	public static TransactionDataBase  getInstance() {
+		if(instance == null) {
+			instance = new TransactionDataBase();
+		}
+		return instance;
+	}
+	
+	
 	public void addTransaction(Transaction transaction)
 	{
 		transactions.add(transaction);	
