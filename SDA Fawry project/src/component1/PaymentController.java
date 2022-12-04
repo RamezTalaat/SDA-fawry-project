@@ -10,11 +10,8 @@ public abstract class PaymentController extends TransactionController{
 	@Override
 	public abstract Transaction createTransaction();
 	@Override
-	public Boolean makeTransaction(User user, int amount, Transaction transaction) {
+	public abstract Boolean makeTransaction(User user, int amount, Transaction transaction);
 		// TODO Auto-generated method stub
-		
-		return null;
-	}
 	
 
 }
