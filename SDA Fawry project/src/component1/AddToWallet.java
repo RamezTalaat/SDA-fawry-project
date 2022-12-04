@@ -6,7 +6,7 @@ public class AddToWallet extends Transaction{
 	int amount;
 	public AddToWallet()
 	{
-		type=  transactionType.walletTransaction;
+		type=  "walletTransaction";
 	}
 	public void setUser (User user_) {
 		user = user_;

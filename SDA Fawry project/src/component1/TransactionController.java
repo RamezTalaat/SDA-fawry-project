@@ -5,18 +5,19 @@ public abstract  class TransactionController {
 	public TransactionController (TransactionDataBase _transactionDataBase) {
 		transactionDatabase = _transactionDataBase;
 	}
-	public Boolean setTransaction(User user, int amount , Transaction _transaction) { // _transaction is only used in refund transaction to remove this transaction from the database
+	public Boolean setTransaction(User user, int amount , Transaction _transaction) { 
 		Boolean state =makeTransaction(user,amount,_transaction);
 		if (state) {
 			Transaction transaction = createTransaction();
 			transaction.setAmount(amount);
 			transaction.setUser(user);
 			addTransactionToDatabase(transaction);
-			user.transactions.add(transaction);
+			if(!transaction.type.equals("refundTransaction")) {
+				user.transactions.add(transaction);
+			}
 		}
 		return state;
 		// if true or false
-		
 	}
 	public abstract Boolean makeTransaction(User user, int amount , Transaction transaction);  
 	public abstract Transaction createTransaction();  // factory method

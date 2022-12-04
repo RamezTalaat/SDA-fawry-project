@@ -125,7 +125,37 @@ public class FawryInterface {
 					break;					
 				}
 				case 4:{
-					
+					RefundRequestController refundRequestController = new RefundRequestController(refundRequestDatabase);
+					refundRequestController.listRefundRequests();
+					if(refundRequestDatabase.refundRequests.size()==0) {
+						break;
+					}
+					System.out.println("Do you want to approve or reject a Request? (answer with 'yes' or 'no')");
+					String answer = input.next();
+					if(answer.equals("yes")) {
+						System.out.println("Please choose the number of the request");
+						int choice = input.nextInt();
+						if(choice>refundRequestController.refundRequestDatabase.refundRequests.size()) {
+							System.out.println("Sorry, invalid option");
+						}
+						else {
+							RefundRequest chosenRefundRequest = refundRequestDatabase.refundRequests.get(choice-1);
+							System.out.println("Do you want to approve or reject this transaction? (answer with 'approve' or 'reject')");
+							answer = input.next();
+							refundRequestController.removeRequest(chosenRefundRequest, answer);
+							if(answer.equals("approve")) {
+								RefundController refundController = new RefundController(transacionDataBase);
+								refundController.setTransaction(chosenRefundRequest.getUser(), chosenRefundRequest.getTransaction().getAmount(), chosenRefundRequest.getTransaction());
+								System.out.println("Request has been approved successfully");
+							}
+							else {
+								System.out.println("Request has been rejected successfully");
+							}
+						}
+					}
+					else if(!answer.equals("no")) {
+						System.out.println("Sorry, invalid option");
+					}
 					break;
 				}
 				default:{

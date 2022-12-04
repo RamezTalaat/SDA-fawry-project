@@ -11,7 +11,7 @@ public class RefundRequestForm {
 	public void getRefundRequestForm(User user)
 	{
 		if(user.transactions.size()==0) {
-			System.out.println("Sorry, the user hasn't made any transactions yet");
+			System.out.println("Sorry, no transactions to be refunded");
 			return;
 		}
 		System.out.println("Please choose the transaction you want to issue a refund request for:- ");

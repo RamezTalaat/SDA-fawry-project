@@ -24,20 +24,20 @@ public abstract class Transaction {
 	 }
 }*/
 package component1;
-enum transactionType
+/*enum transactionType
 {
 	paymentTransaction,
 	refundTransaction,
 	walletTransaction
-}
+}*/
 
 
 public abstract class Transaction {
 	 User user;
 	 int amount;
 	 Service service;
-	 public transactionType type;
-	
+	 //public transactionType type;
+	 public String type;
 	 public void setAmount(int _amount){
 		 amount = _amount;
 	 }

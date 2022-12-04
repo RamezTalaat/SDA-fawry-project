@@ -5,6 +5,6 @@ public class RefundTransaction extends Transaction{
 	//Service	service;
 	public RefundTransaction()
 	{
-		type =  transactionType.refundTransaction;
+		type = "refundTransaction";
 	}
 }
