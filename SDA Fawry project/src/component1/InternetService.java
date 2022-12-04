@@ -1,5 +1,11 @@
 package component1;
 
-public class InternetService {
+public class InternetService extends Service{
+
+	public void setName(String name_) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 }
