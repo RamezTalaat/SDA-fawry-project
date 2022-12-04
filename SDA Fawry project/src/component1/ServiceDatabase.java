@@ -15,21 +15,21 @@ public class ServiceDatabase {
 		weInternet.setName("We Internet");
 		services.add(weInternet); 
 		MobileService weRecharge= new MobileService();
-		vodafoneInternet.setName("We Recharge");
+		weRecharge.setName("We Recharge");
 		services.add(weRecharge);
 		
 		InternetService orangeInternet = new InternetService();
-		weInternet.setName("Orange Internet");
+		orangeInternet.setName("Orange Internet");
 		services.add(orangeInternet); 
-		MobileService orangeRecharge= new MobileService();
-		vodafoneInternet.setName("Orange Recharge");
+		MobileService orangeRecharge = new MobileService();
+		orangeRecharge.setName("Orange Recharge");
 		services.add(orangeRecharge);
 		
 		InternetService etisalatInternet = new InternetService();
-		weInternet.setName("Orange Internet");
+		etisalatInternet.setName("Etisalat Internet");
 		services.add(etisalatInternet); 
 		MobileService etisalatRecharge= new MobileService();
-		vodafoneInternet.setName("Etisalat Recharge");
+		etisalatRecharge.setName("Etisalat Recharge");
 		services.add(etisalatRecharge);
 		
 		LandlineServices receipt = new LandlineServices();
@@ -47,8 +47,7 @@ public class ServiceDatabase {
 		DonationServices ngo = new DonationServices();
 		cancerHospital.setName("Non profitable organizations");
 		services.add(ngo);
-		
-		
+				
 	}
 
 }
