@@ -5,13 +5,13 @@ public class InternetFormHandlerFactory implements FormHandlerFactory{
 	@Override
 	public Form createForm() {
 		// TODO Auto-generated method stub
-		return null;
+		return new InternetForm();
 	}
 
 	@Override
 	public Handler createHandler() {
 		// TODO Auto-generated method stub
-		return null;
+		return new InternetHandler();
 	}
 
 }
