@@ -36,7 +36,7 @@ public abstract class Transaction {
 	 User user;
 	 int amount;
 	 Service service;
-	 transactionType type;
+	 public transactionType type;
 	
 	 public void setAmount(int _amount){
 		 amount = _amount;
@@ -51,6 +51,14 @@ public abstract class Transaction {
 	 public User getUser()
 	 {
 		 return user;
+	 }
+	 public void setService(Service service_)
+	 {
+		 service = service_;
+	 }
+	 public Service getService()
+	 {
+		 return service;
 	 }
 }
 

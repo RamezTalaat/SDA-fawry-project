@@ -6,5 +6,6 @@ public class TransactionDataBase {
 	public void addTransaction(Transaction transaction)
 	{
 		transactions.add(transaction);	
+		//System.out.println(transaction.user.getName());
 	}
 }

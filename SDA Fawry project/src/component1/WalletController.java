@@ -24,6 +24,4 @@ public class WalletController extends TransactionController{
 		}
 		return false;
 	}
-	
-
 }

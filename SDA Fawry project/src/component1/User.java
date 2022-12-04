@@ -2,17 +2,11 @@ package component1;
 import java.util.Random;
 import java.util.Vector;
 
-enum userType
-{
-	user,admin
-}
-
 public class User {
     private String name;
     private String password;
     private String mail;
     private int creditCard;
-    private userType type;
     int ID;
     static int idCount = 1;
     Vector<Transaction> transactions;
@@ -22,19 +16,9 @@ public class User {
     {
         ID = idCount++;
         wallet = new Wallet();
-        type = userType.user;
         creditCard = random.nextInt(1000, 10000); // Generates random amount of money in the user's credit card between 1000 EGP and 10000 EGP
         transactions = new Vector<Transaction>();
     }
-    public User(userType _type)
-    {
-        ID = idCount++;
-        wallet = new Wallet();
-        type = _type;
-        creditCard = random.nextInt(1000, 10000); // Generates random amount of money in the user's credit card between 1000 EGP and 10000 EGP
-        transactions = new Vector<Transaction>();
-    }
-    
     public void setName(String name_)
     {
     	name = name_;
@@ -66,9 +50,5 @@ public class User {
     public int getCreditCard()
     {
     	return creditCard;
-    }
-    public userType getType()
-    {
-    	return type;
     }
 }
