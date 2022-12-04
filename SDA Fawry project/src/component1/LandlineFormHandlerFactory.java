@@ -5,13 +5,13 @@ public class LandlineFormHandlerFactory implements FormHandlerFactory{
 	@Override
 	public Form createForm() {
 		// TODO Auto-generated method stub
-		return null;
+		return new LandlineForm();
 	}
 
 	@Override
 	public Handler createHandler() {
 		// TODO Auto-generated method stub
-		return null;
+		return new LandlineHandler();
 	}
 	
 }
