@@ -9,6 +9,7 @@ public class User {
     private int creditCard;
     int ID;
     static int idCount = 1;
+    protected Discount discount;
     Vector<Transaction> transactions;
     Random random = new Random();
     Wallet wallet ;
@@ -18,6 +19,7 @@ public class User {
         wallet = new Wallet();
         creditCard = random.nextInt(1000, 10000); // Generates random amount of money in the user's credit card between 1000 EGP and 10000 EGP
         transactions = new Vector<Transaction>();
+        discount = new InitialDiscount();
     }
     public void setName(String name_)
     {

@@ -116,7 +116,10 @@ public class FawryInterface {
 					return;
 				}
 				case 2:{
-					
+					AddDiscountForm form = new AddDiscountForm();
+					form.getDiscountData();
+					DiscountController discountController = new DiscountController();
+					discountController.makeDiscount(form);
 					break;			
 				}
 				case 3:{
