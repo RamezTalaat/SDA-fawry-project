@@ -113,7 +113,6 @@ public class FawryInterface {
 					searchController.searchForService();
 					break; 
 				}
-				
 				case 8:{
 					return;
 				}
@@ -142,34 +141,6 @@ public class FawryInterface {
 		System.out.println("11- Donate for a school");
 		System.out.println("12- Donate for a Non profitable organizations");
 		int option = input.nextInt();
-		/*if(option >= 1 && option <=4) {
-			factory = new MobileFormHandlerFactory();
-			form = factory.createForm(transacionDataBase);
-			handler = factory.createHandler();
-			form.viewForm();
-			handler.handleForm(form, currentUser);
-		}
-		else if(option>=5 && option<=8) {
-			factory = new InternetFormHandlerFactory();
-			form = factory.createForm(transacionDataBase);
-			handler = factory.createHandler();
-			form.viewForm();
-			handler.handleForm(form, currentUser);
-		}
-		else if(option == 9) {
-			factory = new LandlineFormHandlerFactory();
-			form = factory.createForm(transacionDataBase);
-			handler = factory.createHandler();
-			form.viewForm();
-			handler.handleForm(form, currentUser);
-		}
-		else if(option>= 10 && option<=12) {
-			factory = new DonationFormHandlerFactory();
-			form = factory.createForm(transacionDataBase);
-			handler = factory.createHandler();
-			form.viewForm();
-			handler.handleForm(form, currentUser);
-		}*/
 		if(option == 1) {
 			service = getService("Vodafone Recharge");
 			factory = new MobileFormHandlerFactory();
@@ -244,6 +215,18 @@ public class FawryInterface {
 		}
 		else if(option == 9) {
 			service = getService("Landline");
+			System.out.println("Do you want to receive the receipt monthly or every quarter (answer with 'month' or 'quarter')");
+			String answer = input.next();
+			if(answer.equals("month")) {
+				service.setReceipt(new MonthlyReceipt());
+			}
+			else if(answer.equals("quarter")) {
+				service.setReceipt(new QuarterReceipt());
+			}
+			else {
+				System.out.println("Sorry, invalid option");
+				return;
+			}
 			factory = new LandlineFormHandlerFactory();
 			form = factory.createForm();
 			handler = factory.createHandler();
@@ -361,14 +344,4 @@ public class FawryInterface {
 		}
 		return ServiceDatabase.getInstance().services.get(i);
 	}
-
 }
-
-
-
-
-
-
-
-
-

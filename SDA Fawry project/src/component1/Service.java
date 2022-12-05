@@ -45,7 +45,16 @@ public class Service {
 	{
 		return type;
 	}
-	
+	public void setReceipt(Receipt receipt_)
+	{
+		
+	}
+	/*public void getServices(Service service) 
+	{
+		System.out.println("Type: ");
+		String name;
+		name = input.next();
+	}*/
 	public void payForService(User user) {
 		form.viewForm();
 		handler.handleForm(form, user, this);
