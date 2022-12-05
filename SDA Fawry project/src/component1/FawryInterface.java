@@ -69,7 +69,8 @@ public class FawryInterface {
 		System.out.println("4- Request a refund for a completed transaction");
 		System.out.println("5- List available discounts");
 		System.out.println("6- Choose service");
-		System.out.println("7- Exit");
+		System.out.println("7- Search services");
+		System.out.println("8- Exit");
 		System.out.println("Option:- ");
 		int option = 0;
 		while(true) {
@@ -105,6 +106,68 @@ public class FawryInterface {
 					break;
 				}
 				case 7:{
+					ServiceDatabase serviceDatabase = ServiceDatabase.getInstance();
+					Vector<Service> searchedServices = new Vector<Service>();
+					String searchedService;
+					
+					System.out.println("Enter service name to search");
+					input.nextLine();   // to clear buffer from /n after nextInt() input
+					searchedService = input.nextLine();
+					//System.out.println(searchedService + " length = " + searchedService.length());
+						for (int j = 0; j < serviceDatabase.services.size(); j++) {
+							
+							Service service = serviceDatabase.services.get(j);
+							String serviceName = service.getName();
+							int firstIdx =-1;
+							for (int k = 0; k < serviceName.length(); k++) {
+								Boolean state = true;
+								if(searchedService.toLowerCase().charAt(0) == serviceName.toLowerCase().charAt(k)) {
+
+									firstIdx =k;  //to get the first matching character
+									if( (serviceName.length()-firstIdx)>= searchedService.length() ) { // to check if characters matched and
+										
+										for (int z = 0; z < searchedService.length() ; z++) { // to check if each character is the same
+											if(searchedService.toLowerCase().charAt(z) != serviceName.toLowerCase().charAt(z+firstIdx)) {
+												
+												state = false;
+												break; // to exit loop
+											}
+																	
+										}
+										if(state) { // to check if the service name matched the search
+							
+											Boolean serviceState = true;
+											for (int f = 0; f < searchedServices.size(); f++) { // to check if this service was added before
+												if(searchedServices.get(f) == service) {
+													serviceState = false;
+													break;
+												}
+												
+											}
+											if(serviceState) {
+												searchedServices.add(service);
+											}
+											
+										}
+									}
+								}
+							}
+									
+						}
+						
+					if(searchedServices.isEmpty()) {
+						System.out.println("No corresponding services were found");
+					}
+					else {
+						for (int i = 0; i < searchedServices.size(); i++) {
+							System.out.println(i+1 + "- " + searchedServices.get(i).name);
+						}
+					}
+					
+					break; 
+				}
+
+				case 8:{
 					return;
 				}
 				default:{
