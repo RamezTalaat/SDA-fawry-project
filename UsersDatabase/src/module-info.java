@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author RET
- *
- */
-module UsersDatabase {
-}
