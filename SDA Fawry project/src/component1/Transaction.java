@@ -46,10 +46,6 @@ public abstract class Transaction {
 	 {
 		 user = _user;
 	 }
-	 public void setService(Service service_)
-	 {
-		 service = service_;
-	 }
 	 public int getAmount()
 	 {
 		 return amount;
@@ -57,6 +53,10 @@ public abstract class Transaction {
 	 public User getUser()
 	 {
 		 return user;
+	 }
+	 public void setService(Service service_)
+	 {
+		 service = service_;
 	 }
 	 public Service getService()
 	 {
