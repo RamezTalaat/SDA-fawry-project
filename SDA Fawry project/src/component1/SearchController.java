@@ -68,7 +68,7 @@ public class SearchController {
 		}
 		else {
 			for (int i = 0; i < searchedServices.size(); i++) {
-				System.out.println(i+1 + "- " + searchedServices.get(i).name);
+				System.out.println(i+1 + "- " + searchedServices.get(i).name + "	Type: " +searchedServices.get(i).type );
 			}
 		}
 	}

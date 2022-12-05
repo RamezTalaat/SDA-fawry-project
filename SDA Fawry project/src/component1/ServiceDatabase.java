@@ -14,7 +14,7 @@ public class ServiceDatabase {
 	public Vector<Service> services = new Vector<Service>();
 	private ServiceDatabase() {
 		// TODO Auto-generated constructor stub
-		
+		 
 		InternetService vodafoneInternet = new InternetService();
 		vodafoneInternet.setName("Vodafone Internet");
 		vodafoneInternet.setType("Internet Service");
@@ -61,17 +61,17 @@ public class ServiceDatabase {
 		services.add(landlineService);
 		
 		DonationService cancerHospital = new DonationService();
-		cancerHospital.setName("Cancer Hospital Donation");
+		cancerHospital.setName("Cancer Hospital");
 		cancerHospital.setType("Donation Service");
 		services.add(cancerHospital);
 		
 		DonationService schools = new DonationService();
-		schools.setName("Schools Donation");
+		schools.setName("Schools");
 		schools.setType("Donation Service");
 		services.add(schools);
 		
 		DonationService NGO = new DonationService();
-		NGO.setName("Non profitable organizations Donation");
+		NGO.setName("Non profitable organizations");
 		NGO.setType("Donation Service");
 		services.add(NGO);
 	}	
