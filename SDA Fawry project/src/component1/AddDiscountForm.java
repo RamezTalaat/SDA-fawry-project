@@ -41,7 +41,7 @@ public class AddDiscountForm {
 			System.out.println("Input discounted service name");
 			input.nextLine();
 			service = input.nextLine();
-			System.out.println("service = "+ service);
+			//System.out.println("service = "+ service);
 		}
 		else {
 			System.out.println("ERROR : you did not choose option 1 or 2  , please try again");
