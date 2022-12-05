@@ -1,6 +1,6 @@
 package component1;
 
 public interface FormHandlerFactory {
-	public Form createForm(TransactionDataBase transactionDataBase);
+	public Form createForm();
 	public Handler createHandler();
 }

@@ -14,6 +14,7 @@ public class FawryInterface {
 	public static FormHandlerFactory factory;
 	public static Form form;
 	public static Handler handler;
+	public static Service service;
 	public static void main(String[] args) {
 		Admin admin  = new Admin();
 		admin.setName("admin");
@@ -131,7 +132,7 @@ public class FawryInterface {
 		System.out.println("11- Donate for a school");
 		System.out.println("12- Donate for a Non profitable organizations");
 		int option = input.nextInt();
-		if(option >= 1 && option <=4) {
+		/*if(option >= 1 && option <=4) {
 			factory = new MobileFormHandlerFactory();
 			form = factory.createForm(transacionDataBase);
 			handler = factory.createHandler();
@@ -158,7 +159,119 @@ public class FawryInterface {
 			handler = factory.createHandler();
 			form.viewForm();
 			handler.handleForm(form, currentUser);
+		}*/
+		if(option == 1) {
+			service = getService("Vodafone Recharge");
+			factory = new MobileFormHandlerFactory();
+			form = factory.createForm();
+			handler = factory.createHandler();
+			service.setForm(form);
+			service.setHandler(handler);
+			service.payForService(currentUser);
 		}
+		else if(option == 2) {
+			service = getService("Etisalat Recharge");
+			factory = new MobileFormHandlerFactory();
+			form = factory.createForm();
+			handler = factory.createHandler();
+			service.setForm(form);
+			service.setHandler(handler);
+			service.payForService(currentUser);
+		}
+		else if(option == 3) {
+			service = getService("Orange Recharge");
+			factory = new MobileFormHandlerFactory();
+			form = factory.createForm();
+			handler = factory.createHandler();
+			service.setForm(form);
+			service.setHandler(handler);
+			service.payForService(currentUser);
+		}
+		else if(option == 4) {
+			service = getService("We Recharge");
+			factory = new MobileFormHandlerFactory();
+			form = factory.createForm();
+			handler = factory.createHandler();
+			service.setForm(form);
+			service.setHandler(handler);
+			service.payForService(currentUser);
+		}
+		else if(option == 5) {
+			service = getService("Vodafone Internet");
+			factory = new InternetFormHandlerFactory();
+			form = factory.createForm();
+			handler = factory.createHandler();
+			service.setForm(form);
+			service.setHandler(handler);
+			service.payForService(currentUser);
+		}
+		else if(option == 6) {
+			service = getService("Etisalat Internet");
+			factory = new InternetFormHandlerFactory();
+			form = factory.createForm();
+			handler = factory.createHandler();
+			service.setForm(form);
+			service.setHandler(handler);
+			service.payForService(currentUser);
+		}
+		else if(option == 7) {
+			service = getService("Orange Internet");
+			factory = new InternetFormHandlerFactory();
+			form = factory.createForm();
+			handler = factory.createHandler();
+			service.setForm(form);
+			service.setHandler(handler);
+			service.payForService(currentUser);
+		}
+		else if(option == 8) {
+			service = getService("We Internet");
+			factory = new InternetFormHandlerFactory();
+			form = factory.createForm();
+			handler = factory.createHandler();
+			service.setForm(form);
+			service.setHandler(handler);
+			service.payForService(currentUser);
+		}
+		else if(option == 9) {
+			service = getService("Landline");
+			factory = new LandlineFormHandlerFactory();
+			form = factory.createForm();
+			handler = factory.createHandler();
+			service.setForm(form);
+			service.setHandler(handler);
+			service.payForService(currentUser);
+		}
+		else if(option == 10) {
+			service = getService("Cancer Hospital");
+			factory = new DonationFormHandlerFactory();
+			form = factory.createForm();
+			handler = factory.createHandler();
+			service.setForm(form);
+			service.setHandler(handler);
+			service.payForService(currentUser);
+		}
+		else if(option == 11) {
+			service = getService("Schools");
+			factory = new DonationFormHandlerFactory();
+			form = factory.createForm();
+			handler = factory.createHandler();
+			service.setForm(form);
+			service.setHandler(handler);
+			service.payForService(currentUser);
+		}
+		else if(option == 12) {
+			service = getService("Non profitable organizations");
+			factory = new DonationFormHandlerFactory();
+			form = factory.createForm();
+			handler = factory.createHandler();
+			service.setForm(form);
+			service.setHandler(handler);
+			service.payForService(currentUser);
+		}
+		else {
+			System.out.println("Sorry, invalid option");
+		}
+		
 	}
 	public static void getAdminMenu()
 	{
@@ -208,7 +321,7 @@ public class FawryInterface {
 							refundRequestController.removeRequest(chosenRefundRequest, answer);
 							if(answer.equals("approve")) {
 								RefundController refundController = new RefundController(transacionDataBase);
-								refundController.setTransaction(chosenRefundRequest.getUser(), chosenRefundRequest.getTransaction().getAmount(), chosenRefundRequest.getTransaction());
+								refundController.setTransaction(chosenRefundRequest.getUser(), chosenRefundRequest.getTransaction().getAmount(), chosenRefundRequest.getTransaction(), null);
 								System.out.println("Request has been approved successfully");
 							}
 							else {
@@ -227,6 +340,16 @@ public class FawryInterface {
 			}
 			System.out.println("Choose another option:- ");
 		}		
+	}
+	public static Service getService(String serviceName)
+	{
+		int i=0;
+		for(; i<ServiceDatabase.getInstance().services.size(); i++) {
+			if(serviceName.equals(ServiceDatabase.getInstance().services.get(i).getName())) {
+				break;
+			}
+		}
+		return ServiceDatabase.getInstance().services.get(i);
 	}
 }
 

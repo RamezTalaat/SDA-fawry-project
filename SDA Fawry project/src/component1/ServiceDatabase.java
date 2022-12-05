@@ -10,54 +10,70 @@ import java.util.Vector;
 public class ServiceDatabase {
 	
 	private static ServiceDatabase instance = null;
-	public Vector<User> users;
-	
+	//public Vector<User> users;
+	public Vector<Service> services = new Vector<Service>();
 	private ServiceDatabase() {
 		// TODO Auto-generated constructor stub
-		users = new Vector<User>();
+		//users = new Vector<User>();
 		InternetService vodafoneInternet = new InternetService();
 		vodafoneInternet.setName("Vodafone Internet");
+		vodafoneInternet.setType("Internet Service");
 		services.add(vodafoneInternet);
+		
 		MobileService vodafoneRecharge= new MobileService();
-		vodafoneInternet.setName("Vodafone Recharge");
+		vodafoneRecharge.setName("Vodafone Recharge");
+		vodafoneRecharge.setType("Recharge Service");
 		services.add(vodafoneRecharge);
 		
 		InternetService weInternet = new InternetService();
 		weInternet.setName("We Internet");
+		weInternet.setType("Internet Service");
 		services.add(weInternet); 
+		
 		MobileService weRecharge= new MobileService();
 		weRecharge.setName("We Recharge");
+		weRecharge.setType("Recharge Service");
 		services.add(weRecharge);
 		
 		InternetService orangeInternet = new InternetService();
 		orangeInternet.setName("Orange Internet");
+		orangeInternet.setType("Internet Service");
 		services.add(orangeInternet); 
+		
 		MobileService orangeRecharge = new MobileService();
 		orangeRecharge.setName("Orange Recharge");
+		orangeRecharge.setType("Recharge Service");
 		services.add(orangeRecharge);
 		
 		InternetService etisalatInternet = new InternetService();
 		etisalatInternet.setName("Etisalat Internet");
-		services.add(etisalatInternet); 
+		etisalatInternet.setType("Internet Service");
+		services.add(etisalatInternet);
+		
 		MobileService etisalatRecharge= new MobileService();
 		etisalatRecharge.setName("Etisalat Recharge");
+		etisalatRecharge.setType("Recharge Service");
 		services.add(etisalatRecharge);
 		
-		LandlineService receipt = new LandlineService();
-		receipt.setName("Monthly receipt");
-		services.add(receipt);
-		receipt.setName("Quarter receipt");
-		services.add(receipt);
+		LandlineService landlineService = new LandlineService();
+		landlineService.setName("Landline");
+		landlineService.setType("Landline Service");
+		services.add(landlineService);
 		
 		DonationService cancerHospital = new DonationService();
 		cancerHospital.setName("Cancer Hospital");
+		cancerHospital.setType("Donation Service");
 		services.add(cancerHospital);
+		
 		DonationService schools = new DonationService();
-		cancerHospital.setName("Schools");
+		schools.setName("Schools");
+		schools.setType("Donation Service");
 		services.add(schools);
-		DonationService ngo = new DonationService();
-		cancerHospital.setName("Non profitable organizations");
-		services.add(ngo);
+		
+		DonationService NGO = new DonationService();
+		NGO.setName("Non profitable organizations");
+		NGO.setType("Donation Service");
+		services.add(NGO);
 	}	
 	public static ServiceDatabase  getInstance() {
 		if(instance == null) {
@@ -65,7 +81,6 @@ public class ServiceDatabase {
 		}
 		return instance;
 	}
-	public Vector<Service> services = new Vector<Service>();
 	/*public ServiceDatabase() {
 		InternetService vodafoneInternet = new InternetService();
 		vodafoneInternet.setName("Vodafone Internet");

@@ -5,12 +5,15 @@ public abstract  class TransactionController {
 	public TransactionController (TransactionDataBase _transactionDataBase) {
 		transactionDatabase = _transactionDataBase;
 	}
-	public Boolean setTransaction(User user, int amount , Transaction _transaction) { 
+	public Boolean setTransaction(User user, int amount , Transaction _transaction, Service service) { 
 		Boolean state =makeTransaction(user,amount,_transaction);
 		if (state) {
 			Transaction transaction = createTransaction();
 			transaction.setAmount(amount);
 			transaction.setUser(user);
+			if(transaction.type.equals("paymentTransaction")) {
+				transaction.setService(service);
+			}
 			addTransactionToDatabase(transaction);
 			if(!transaction.type.equals("refundTransaction")) {
 				user.transactions.add(transaction);
@@ -34,9 +37,10 @@ public abstract  class TransactionController {
 				System.out.println("Transaction " + (i+1) +" : ");
 				System.out.println("Transaction type: "+transactionDatabase.transactions.get(i).type);
 				System.out.println("User Name : " + transactionDatabase.transactions.get(i).getUser().getName());
-				/*if(transactionDatabase.transactions.get(i).type.equals("paymentTransaction")) {
-					System.out.println("Service Type : " + transactionDatabase.transactions.get(i).getService().getName());
-				}*/
+				if(transactionDatabase.transactions.get(i).type.equals("paymentTransaction")) {
+					System.out.println("Service Name : " + transactionDatabase.transactions.get(i).getService().getName());
+					System.out.println("Service Type : " + transactionDatabase.transactions.get(i).getService().getType());
+				}
 				System.out.println("Amount : " + transactionDatabase.transactions.get(i).getAmount());
 			}
 		}

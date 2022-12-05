@@ -3,10 +3,10 @@ package component1;
 import java.util.Scanner;
 
 public class DonationsForm extends Form{
-	public DonationsForm(TransactionDataBase transactionDataBase) {
+	/*public DonationsForm(TransactionDataBase transactionDataBase) {
 		super(transactionDataBase);
 		// TODO Auto-generated constructor stub
-	}
+	}*/
 	Scanner input = new Scanner(System.in);
 	public String OrganizationName;
 	@Override

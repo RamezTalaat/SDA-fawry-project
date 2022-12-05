@@ -3,9 +3,9 @@ package component1;
 public class LandlineFormHandlerFactory implements FormHandlerFactory{
 
 	@Override
-	public Form createForm(TransactionDataBase transactionDataBase) {
+	public Form createForm() {
 		// TODO Auto-generated method stub
-		return new LandlineForm( transactionDataBase);
+		return new LandlineForm();
 	}
 
 	@Override

@@ -51,8 +51,8 @@ public class Service {
 	String name ;
 	String type;
 	Discount discount;
-	//Form form;
-	//Handler handler
+	public Form form;
+	public Handler handler;
 	//Vector<ServiceDiscount> discount = new Vector<ServiceDiscount>();
 	public Service() {
 		// TODO Auto-generated constructor stub
@@ -67,6 +67,22 @@ public class Service {
 	{
 		type = type_;
 	}
+	public void setForm(Form form_)
+	{
+		form = form_;
+	}
+	public void setHandler(Handler handler_)
+	{
+		handler = handler_;
+	}
+	public Form getForm()
+	{
+		return form;
+	}
+	public Handler getHandler()
+	{
+		return handler;
+	}
 	public String getName() 
 	{
 		return name;
@@ -75,12 +91,15 @@ public class Service {
 	{
 		return type;
 	}
-	public void getServices(Service service) 
+	/*public void getServices(Service service) 
 	{
 		System.out.println("Type: ");
 		String name;
 		name = input.next();
-		
+	}*/
+	public void payForService(User user) {
+		form.viewForm();
+		handler.handleForm(form, user, this);
 	}
 }
 

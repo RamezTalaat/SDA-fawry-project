@@ -3,10 +3,10 @@ package component1;
 import java.util.Scanner;
 
 public class MobileForm extends Form{
-	public MobileForm(TransactionDataBase transactionDataBase) {
+	/*public MobileForm(TransactionDataBase transactionDataBase) {
 		super(transactionDataBase);
 		// TODO Auto-generated constructor stub
-	}
+	}*/
 
 	Scanner input = new Scanner(System.in);
 	public String mobileNumber;

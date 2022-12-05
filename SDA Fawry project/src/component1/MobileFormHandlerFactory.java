@@ -3,9 +3,9 @@ package component1;
 public class MobileFormHandlerFactory implements FormHandlerFactory{
 
 	@Override
-	public Form createForm(TransactionDataBase transactionDataBase) {
+	public Form createForm() {
 		// TODO Auto-generated method stub
-		return new MobileForm( transactionDataBase);
+		return new MobileForm();
 	}
 
 	@Override

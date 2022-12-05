@@ -6,8 +6,8 @@ public abstract class Form {
 	public TransactionDataBase transactionDataBase;
 	/*public abstract void viewForm();
 	public abstract Payment getPaymentMethod(); */
-	public Form(TransactionDataBase transactionDataBase_ ) {
-		transactionDataBase = transactionDataBase_; 
+	public Form() {
+		transactionDataBase = TransactionDataBase.getInstance(); 
 		//paymentMethod = new CreditCardPayment(transactionDataBase);
 	}
 	public void setAmount(int amount_)

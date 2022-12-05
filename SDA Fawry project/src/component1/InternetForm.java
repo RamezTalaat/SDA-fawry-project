@@ -3,10 +3,10 @@ package component1;
 import java.util.Scanner;
 
 public class InternetForm extends Form{
-	public InternetForm(TransactionDataBase transactionDataBase) {
+	/*public InternetForm(TransactionDataBase transactionDataBase) {
 		super(transactionDataBase);
 		// TODO Auto-generated constructor stub
-	}
+	}*/
 
 	Scanner input = new Scanner(System.in);
 	public String homeTelephoneNumber;

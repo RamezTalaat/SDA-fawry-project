@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class LandlineForm extends Form {
 
-	public LandlineForm(TransactionDataBase transactionDataBase) {
+	/*public LandlineForm(TransactionDataBase transactionDataBase) {
 		super(transactionDataBase);
 		// TODO Auto-generated constructor stub
-	}
+	}*/
 	Scanner input = new Scanner(System.in);
 	public String landlineNumber;
 	@Override
