@@ -3,9 +3,9 @@ package component1;
 public class InternetFormHandlerFactory implements FormHandlerFactory{
 
 	@Override
-	public Form createForm() {
+	public Form createForm(TransactionDataBase transactionDataBase) {
 		// TODO Auto-generated method stub
-		return new InternetForm();
+		return new InternetForm(transactionDataBase);
 	}
 
 	@Override

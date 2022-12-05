@@ -1,3 +1,9 @@
+/*package component1;
+import java.util.Vector;
+
+public class ServiceDatabase {
+	Vector<Service> services = new Vector<Service>();
+}*/
 package component1;
 import java.util.Vector;
 
@@ -37,19 +43,19 @@ public class ServiceDatabase {
 		etisalatRecharge.setName("Etisalat Recharge");
 		services.add(etisalatRecharge);
 		
-		LandlineServices receipt = new LandlineServices();
+		LandlineService receipt = new LandlineService();
 		receipt.setName("Monthly receipt");
 		services.add(receipt);
 		receipt.setName("Quarter receipt");
 		services.add(receipt);
 		
-		DonationServices cancerHospital = new DonationServices();
+		DonationService cancerHospital = new DonationService();
 		cancerHospital.setName("Cancer Hospital");
 		services.add(cancerHospital);
-		DonationServices schools = new DonationServices();
+		DonationService schools = new DonationService();
 		cancerHospital.setName("Schools");
 		services.add(schools);
-		DonationServices ngo = new DonationServices();
+		DonationService ngo = new DonationService();
 		cancerHospital.setName("Non profitable organizations");
 		services.add(ngo);
 	}	

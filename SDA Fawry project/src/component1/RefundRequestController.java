@@ -39,9 +39,9 @@ public class RefundRequestController {
 			System.out.println("Requested by "+refundRequestDatabase.refundRequests.get(i).getTransaction().getUser().getName());
 			System.out.println("Transaction type: "+refundRequestDatabase.refundRequests.get(i).getTransaction().type);
 			System.out.println("Transaction Amount: "+refundRequestDatabase.refundRequests.get(i).getTransaction().getAmount());
-			if(refundRequestDatabase.refundRequests.get(i).getTransaction().type.equals("paymentTransaction")) {
+			/*if(refundRequestDatabase.refundRequests.get(i).getTransaction().type.equals("paymentTransaction")) {
 				System.out.println("Transaction Service: "+refundRequestDatabase.refundRequests.get(i).getTransaction().getService().getName());
-			}
+			}*/
 		}
 	}
 	public void removeRequest(RefundRequest refundRequest, String answer)

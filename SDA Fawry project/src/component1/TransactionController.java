@@ -34,9 +34,9 @@ public abstract  class TransactionController {
 				System.out.println("Transaction " + (i+1) +" : ");
 				System.out.println("Transaction type: "+transactionDatabase.transactions.get(i).type);
 				System.out.println("User Name : " + transactionDatabase.transactions.get(i).getUser().getName());
-				if(transactionDatabase.transactions.get(i).type.equals("paymentTransaction")) {
+				/*if(transactionDatabase.transactions.get(i).type.equals("paymentTransaction")) {
 					System.out.println("Service Type : " + transactionDatabase.transactions.get(i).getService().getName());
-				}
+				}*/
 				System.out.println("Amount : " + transactionDatabase.transactions.get(i).getAmount());
 			}
 		}
