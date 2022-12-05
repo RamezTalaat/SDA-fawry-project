@@ -3,11 +3,11 @@ package component1;
 public abstract class Form {
 	private int amount;
 	//public PaymentController paymentMethod;
-	public TransactionDataBase transactionDataBase;
+	//public TransactionDataBase transactionDataBase;
 	/*public abstract void viewForm();
 	public abstract Payment getPaymentMethod(); */
 	public Form() {
-		transactionDataBase = TransactionDataBase.getInstance(); 
+		//transactionDataBase = TransactionDataBase.getInstance(); 
 		//paymentMethod = new CreditCardPayment(transactionDataBase);
 	}
 	public void setAmount(int amount_)

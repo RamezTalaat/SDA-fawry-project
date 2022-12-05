@@ -2,10 +2,10 @@ package component1;
 
 public class WalletPayment extends PaymentController{
 
-	public WalletPayment(TransactionDataBase _transactionDataBase) {
+	/*public WalletPayment(TransactionDataBase _transactionDataBase) {
 		super(_transactionDataBase);
 		// TODO Auto-generated constructor stub
-	}
+	}*/
 
 	@Override
 	public Transaction createTransaction() {
@@ -16,11 +16,18 @@ public class WalletPayment extends PaymentController{
 	}
 
 	@Override
-	public Boolean makeTransaction(User user, int amount, Transaction transaction) {
+	public Boolean makeTransaction(User user, int amount, Transaction transaction, Service service) {
 		// TODO Auto-generated method stub
-		if(user.wallet.getAmount()>=amount) {
-			 user.wallet.setAmount(user.wallet.getAmount()-amount);
-			 System.out.println("Done! "+amount+" EGP was taken from your wallet");
+		int discount = (service.discount.getAmount() + user.discount.getAmount());
+		int price = amount - discount;
+		if(price < 0) {
+			price = 0;
+			discount = amount;
+		}
+		if(user.wallet.getAmount()>=price) {
+			 user.wallet.setAmount(user.wallet.getAmount()-price);
+			 System.out.println("Done! "+price+" EGP was taken from your wallet");
+			 System.out.println("Total discount = "+ discount+ " EGP");
 			 return true;
 		}
 		System.out.println("Sorry, you don't have enough money in your wallet to make this transaction");

@@ -1,11 +1,11 @@
 package component1;
 
 public class RefundRequestController {
-	RefundRequestDatabase refundRequestDatabase;
-	public RefundRequestController(RefundRequestDatabase refundRequestDatabase_)
+	RefundRequestDatabase refundRequestDatabase = RefundRequestDatabase.getInstance();
+	/*public RefundRequestController(RefundRequestDatabase refundRequestDatabase_)
 	{
 		refundRequestDatabase = refundRequestDatabase_;
-	}
+	}*/
 	public boolean makeRefundRequest(int option, User user)
 	{
 		RefundRequest refundRequest = new RefundRequest(user, user.transactions.get(option-1));

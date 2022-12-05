@@ -3,11 +3,10 @@ package component1;
 
 
 public class RefundController extends TransactionController{
-	TransactionDataBase transactionDataBase;
-	public RefundController(TransactionDataBase _transactionDataBase) {
+	/*public RefundController(TransactionDataBase _transactionDataBase) {
 		super(_transactionDataBase);
 		// TODO Auto-generated constructor stub
-	}
+	}*/
 	
 
 	@Override
@@ -16,7 +15,7 @@ public class RefundController extends TransactionController{
 		return  new RefundTransaction();
 	}
 	@Override
-	public Boolean makeTransaction(User user, int amount ,Transaction transaction) {
+	public Boolean makeTransaction(User user, int amount ,Transaction transaction, Service service) {
 		// TODO Auto-generated method stub
 		Boolean state  = true;
 		//

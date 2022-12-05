@@ -26,7 +26,7 @@ public class InternetForm extends Form{
 		while(true) {
 			String answer = input.next();
 			if(answer.equals("yes")) {
-				return new WalletPayment(transactionDataBase);
+				return new WalletPayment();
 			}
 			else if(!answer.equals("no")) {
 				System.out.println("Sorry, Ivalid input");
@@ -36,7 +36,7 @@ public class InternetForm extends Form{
 				break;
 			}
 		}
-		return new CreditCardPayment(transactionDataBase);
+		return new CreditCardPayment();
 	}
 
 	@Override

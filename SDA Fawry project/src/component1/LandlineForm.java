@@ -31,10 +31,10 @@ public class LandlineForm extends Form {
 				while(true) {
 					int option = input.nextInt();
 					if(option == 1) {
-						return new WalletPayment(transactionDataBase);
+						return new WalletPayment();
 					}
 					else if(option == 2) {
-						return new CashPayment(transactionDataBase);
+						return new CashPayment();
 					}
 					System.out.println("Sorry, Ivalid input");
 					System.out.println("Please enter another choice");
@@ -48,7 +48,7 @@ public class LandlineForm extends Form {
 				break;
 			}
 		}
-		return new CreditCardPayment(transactionDataBase);
+		return new CreditCardPayment();
 	}
 	@Override
 	public void getForm() {

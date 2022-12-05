@@ -1,9 +1,9 @@
 package component1;
 
 public class WalletController extends TransactionController{
-	public WalletController(TransactionDataBase _transactionDataBase) {
+	/*public WalletController(TransactionDataBase _transactionDataBase) {
 		super(_transactionDataBase);
-	}
+	}*/
 	//TransactionDataBase transactionDataBase;
 	/*public WalletController (TransactionDataBase transactionDataBase_) {
 		transactionDataBase = transactionDataBase_;
@@ -15,7 +15,7 @@ public class WalletController extends TransactionController{
 		return new AddToWallet();
 	}
 	@Override
-	public Boolean makeTransaction(User user, int amount , Transaction transaction) {
+	public Boolean makeTransaction(User user, int amount , Transaction transaction, Service serivce) {
 		// TODO Auto-generated method stub
 		if(user.getCreditCard()>=amount) {
 			 user.wallet.setAmount(user.wallet.getAmount()+amount);
