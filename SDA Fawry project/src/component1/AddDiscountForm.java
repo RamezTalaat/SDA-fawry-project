@@ -6,10 +6,10 @@ enum discountType{
 }
 
 public class AddDiscountForm {
-	protected int amount;
-	protected discountType type;
-	protected	int minimumTransactions , maximumTransactions;
-	protected String service;
+	public int amount;
+	public discountType type;
+	public	int minimumTransactions , maximumTransactions;
+	public String service;
 	protected String name;
 	public AddDiscountForm() {
 		minimumTransactions=0;
@@ -22,6 +22,7 @@ public class AddDiscountForm {
 		Scanner input = new Scanner(System.in);
 		int option;
 		System.out.print("Enter discount name : ");
+		//input.nextLine();
 		name = input.nextLine();
 		System.out.println("Choose Discount type");
 		System.out.println("1- Overall discount		 (for users)");
@@ -38,7 +39,9 @@ public class AddDiscountForm {
 		else if(option == 2) {
 			type = discountType.specific;
 			System.out.println("Input discounted service name");
-			service = input.next();
+			input.nextLine();
+			service = input.nextLine();
+			System.out.println("service = "+ service);
 		}
 		else {
 			System.out.println("ERROR : you did not choose option 1 or 2  , please try again");
@@ -46,6 +49,5 @@ public class AddDiscountForm {
 		}
 		System.out.println("Input discount amount $ :");
 		amount= input.nextInt();
-		
 	}
 }
