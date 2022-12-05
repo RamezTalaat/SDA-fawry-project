@@ -21,9 +21,10 @@ public class CreditCardPayment extends PaymentController{
 		// TODO Auto-generated method stub
 		if(user.getCreditCard()>=amount) {
 			 user.setCreditCard(user.getCreditCard()-amount);
-			 System.out.println(amount+" EGP was taken from your credit card");
+			 System.out.println("Done! "+amount+" EGP was taken from your credit card");
 			 return true;
 		}
+		System.out.println("Sorry, you don't have enough money in your creditcard to make this transaction");
 		return false;
 	}
 

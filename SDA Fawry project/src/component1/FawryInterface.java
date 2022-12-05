@@ -5,12 +5,15 @@ import java.util.*;
 
 public class FawryInterface {
 	static Scanner input = new Scanner(System.in);
-	static TransactionDataBase transacionDataBase =  TransactionDataBase.getInstance();
+	static TransactionDataBase transacionDataBase = TransactionDataBase.getInstance();
 	static RegistrationForm registrationForm = new RegistrationForm();
 	static WalletForm walletForm = new WalletForm(transacionDataBase);
 	static RefundRequestDatabase refundRequestDatabase = RefundRequestDatabase.getInstance();
 	static RefundRequestForm refundRequestForm = new RefundRequestForm(refundRequestDatabase);
 	static User currentUser = null;
+	public static FormHandlerFactory factory;
+	public static Form form;
+	public static Handler handler;
 	public static void main(String[] args) {
 		Admin admin  = new Admin();
 		admin.setName("admin");
@@ -64,7 +67,8 @@ public class FawryInterface {
 		System.out.println("3- Add money to your wallet");
 		System.out.println("4- Request a refund for a completed transaction");
 		System.out.println("5- List available discounts");
-		System.out.println("6- Exit");
+		System.out.println("6- Choose service");
+		System.out.println("7- Exit");
 		System.out.println("Option:- ");
 		int option = 0;
 		while(true) {
@@ -96,6 +100,10 @@ public class FawryInterface {
 					break;
 				}
 				case 6:{
+					payForService();
+					break;
+				}
+				case 7:{
 					return;
 				}
 				default:{
@@ -104,6 +112,52 @@ public class FawryInterface {
 				}	
 			}
 			System.out.println("Choose another option:- ");
+		}
+	}
+	
+	private static void payForService() 
+	{
+		System.out.println("Please choose one of the following services");
+		System.out.println("1- Vodafone recharge service");
+		System.out.println("2- Etisalat recharge service");
+		System.out.println("3- Orange recharge service");
+		System.out.println("4- We recharge service");
+		System.out.println("5- Vodafone internet service");
+		System.out.println("6- Etisalat internet service");
+		System.out.println("7- Orange internet service");
+		System.out.println("8- We internet service");
+		System.out.println("9- Landline service");
+		System.out.println("10- Donate for a cancer hospital");
+		System.out.println("11- Donate for a school");
+		System.out.println("12- Donate for a Non profitable organizations");
+		int option = input.nextInt();
+		if(option >= 1 && option <=4) {
+			factory = new MobileFormHandlerFactory();
+			form = factory.createForm(transacionDataBase);
+			handler = factory.createHandler();
+			form.viewForm();
+			handler.handleForm(form, currentUser);
+		}
+		else if(option>=5 && option<=8) {
+			factory = new InternetFormHandlerFactory();
+			form = factory.createForm(transacionDataBase);
+			handler = factory.createHandler();
+			form.viewForm();
+			handler.handleForm(form, currentUser);
+		}
+		else if(option == 9) {
+			factory = new LandlineFormHandlerFactory();
+			form = factory.createForm(transacionDataBase);
+			handler = factory.createHandler();
+			form.viewForm();
+			handler.handleForm(form, currentUser);
+		}
+		else if(option>= 10 && option<=12) {
+			factory = new DonationFormHandlerFactory();
+			form = factory.createForm(transacionDataBase);
+			handler = factory.createHandler();
+			form.viewForm();
+			handler.handleForm(form, currentUser);
 		}
 	}
 	public static void getAdminMenu()
@@ -122,10 +176,7 @@ public class FawryInterface {
 					return;
 				}
 				case 2:{
-					AddDiscountForm form = new AddDiscountForm();
-					form.getDiscountData();
-					DiscountController discountController = new DiscountController();
-					discountController.makeDiscount(form);
+					
 					break;			
 				}
 				case 3:{
@@ -175,4 +226,14 @@ public class FawryInterface {
 		}		
 	}
 }
+
+
+
+
+
+
+
+
+
+
 

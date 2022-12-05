@@ -3,9 +3,9 @@ package component1;
 public class DonationFormHandlerFactory implements FormHandlerFactory{
 
 	@Override
-	public Form createForm() {
+	public Form createForm(TransactionDataBase transactionDataBase) {
 		// TODO Auto-generated method stub
-		return new DonationsForm();
+		return new DonationsForm( transactionDataBase);
 	}
 
 	@Override

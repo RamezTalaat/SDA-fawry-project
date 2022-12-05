@@ -19,10 +19,11 @@ public class WalletPayment extends PaymentController{
 	public Boolean makeTransaction(User user, int amount, Transaction transaction) {
 		// TODO Auto-generated method stub
 		if(user.wallet.getAmount()>=amount) {
-			 user.wallet.setAmount(user.getCreditCard()-amount);
-			 System.out.println(amount+" EGP was taken from your wallet");
+			 user.wallet.setAmount(user.wallet.getAmount()-amount);
+			 System.out.println("Done! "+amount+" EGP was taken from your wallet");
 			 return true;
 		}
+		System.out.println("Sorry, you don't have enough money in your wallet to make this transaction");
 		return false;
 	}
 }
