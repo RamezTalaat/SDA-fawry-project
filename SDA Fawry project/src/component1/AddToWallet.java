@@ -1,7 +1,7 @@
 package component1;
 
 public class AddToWallet extends Transaction{
-	private Transaction transaction;
+	//private Transaction transaction;
 	private User user;
 	int amount;
 	public AddToWallet()

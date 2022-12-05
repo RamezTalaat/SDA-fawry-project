@@ -1,12 +1,12 @@
 package component1;
 
 public abstract  class TransactionController {
-	TransactionDataBase transactionDatabase;
-	public TransactionController (TransactionDataBase _transactionDataBase) {
+	public TransactionDataBase transactionDatabase = TransactionDataBase.getInstance();
+	/*public TransactionController (TransactionDataBase _transactionDataBase) {
 		transactionDatabase = _transactionDataBase;
-	}
+	}*/
 	public Boolean setTransaction(User user, int amount , Transaction _transaction, Service service) { 
-		Boolean state =makeTransaction(user,amount,_transaction);
+		Boolean state =makeTransaction(user, amount, _transaction, service); ////////////
 		if (state) {
 			Transaction transaction = createTransaction();
 			transaction.setAmount(amount);
@@ -22,7 +22,7 @@ public abstract  class TransactionController {
 		return state;
 		// if true or false
 	}
-	public abstract Boolean makeTransaction(User user, int amount , Transaction transaction);  
+	public abstract Boolean makeTransaction(User user, int amount , Transaction transaction, Service service);  
 	public abstract Transaction createTransaction();  // factory method
 	public void addTransactionToDatabase(Transaction transaction) {
 		transactionDatabase.addTransaction(transaction);

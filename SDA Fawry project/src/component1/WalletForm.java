@@ -4,8 +4,8 @@ import java.util.*;
 public class WalletForm {
 	Scanner input = new Scanner(System.in);
 	WalletController walletController;
-	public  WalletForm(TransactionDataBase transactionDataBase_) {
-		walletController =new WalletController(transactionDataBase_);
+	public  WalletForm() {
+		walletController =new WalletController();
 	}
   public void getWalletForm (User user) {
 	  System.out.print("Enter the amount of money you want to add ");

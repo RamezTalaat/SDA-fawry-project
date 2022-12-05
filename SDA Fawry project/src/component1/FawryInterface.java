@@ -5,16 +5,15 @@ import java.util.*;
 
 public class FawryInterface {
 	static Scanner input = new Scanner(System.in);
-	static TransactionDataBase transacionDataBase = TransactionDataBase.getInstance();
 	static RegistrationForm registrationForm = new RegistrationForm();
-	static WalletForm walletForm = new WalletForm(transacionDataBase);
-	static RefundRequestDatabase refundRequestDatabase = RefundRequestDatabase.getInstance();
-	static RefundRequestForm refundRequestForm = new RefundRequestForm(refundRequestDatabase);
+	static WalletForm walletForm = new WalletForm();
+	static RefundRequestForm refundRequestForm = new RefundRequestForm();
 	static User currentUser = null;
 	public static FormHandlerFactory factory;
 	public static Form form;
 	public static Handler handler;
 	public static Service service;
+	public static DiscountController discountController = new DiscountController();
 	public static void main(String[] args) {
 		Admin admin  = new Admin();
 		admin.setName("admin");
@@ -97,8 +96,12 @@ public class FawryInterface {
 					break;
 				}
 				case 5:{
-					DiscountController discountController = new DiscountController();
-					discountController.getDiscounts();
+					if(DiscountDatabase.getInstance().discounts.size()==0) {
+						System.out.println("Sorry, No discounts yet");
+					}
+					else {
+						discountController.getDiscounts();
+					}
 					break;
 				}
 				case 6:{
@@ -359,14 +362,14 @@ public class FawryInterface {
 					break;			
 				}
 				case 3:{
-					TransactionController listerController = new RefundController(transacionDataBase);
+					TransactionController listerController = new RefundController();
 					listerController.listTransactions();
 					break;					
 				}
 				case 4:{
-					RefundRequestController refundRequestController = new RefundRequestController(refundRequestDatabase);
+					RefundRequestController refundRequestController = new RefundRequestController();
 					refundRequestController.listRefundRequests();
-					if(refundRequestDatabase.refundRequests.size()==0) {
+					if(RefundRequestDatabase.getInstance().refundRequests.size()==0) {
 						break;
 					}
 					System.out.println("Do you want to approve or reject a Request? (answer with 'yes' or 'no')");
@@ -378,12 +381,12 @@ public class FawryInterface {
 							System.out.println("Sorry, invalid option");
 						}
 						else {
-							RefundRequest chosenRefundRequest = refundRequestDatabase.refundRequests.get(choice-1);
+							RefundRequest chosenRefundRequest = RefundRequestDatabase.getInstance().refundRequests.get(choice-1);
 							System.out.println("Do you want to approve or reject this transaction? (answer with 'approve' or 'reject')");
 							answer = input.next();
 							refundRequestController.removeRequest(chosenRefundRequest, answer);
 							if(answer.equals("approve")) {
-								RefundController refundController = new RefundController(transacionDataBase);
+								RefundController refundController = new RefundController();
 								refundController.setTransaction(chosenRefundRequest.getUser(), chosenRefundRequest.getTransaction().getAmount(), chosenRefundRequest.getTransaction(), null);
 								System.out.println("Request has been approved successfully");
 							}

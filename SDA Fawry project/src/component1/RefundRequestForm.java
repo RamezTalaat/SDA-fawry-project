@@ -4,9 +4,9 @@ import java.util.Scanner;
 public class RefundRequestForm {
 	Scanner input = new Scanner(System.in);
 	RefundRequestController refundRequestController;
-	public RefundRequestForm(RefundRequestDatabase refundRequestDatabase_)
+	public RefundRequestForm()
 	{
-		refundRequestController = new RefundRequestController(refundRequestDatabase_);
+		refundRequestController = new RefundRequestController();
 	}
 	public void getRefundRequestForm(User user)
 	{
@@ -17,10 +17,10 @@ public class RefundRequestForm {
 		System.out.println("Please choose the transaction you want to issue a refund request for:- ");
 		for(int i=0; i<user.transactions.size(); i++) {
 			if(user.transactions.get(i).type.equals("paymentTransaction")) {
-				System.out.println((i+1)+"- Transaction type: " + user.transactions.get(i).type+ ", trasaction amount: " + user.transactions.get(i).getAmount() + " ,service name: " + user.transactions.get(i).getService().getName() + " ,service type: " + user.transactions.get(i).getService().getType());
+				System.out.println((i+1)+"- Transaction type: " + user.transactions.get(i).type+ ", trasaction amount: " + user.transactions.get(i).getAmount() + " EGP ,service name: " + user.transactions.get(i).getService().getName() + " ,service type: " + user.transactions.get(i).getService().getType());
 			}
 			else {
-				System.out.println((i+1)+"- Transaction type: " + user.transactions.get(i).type+ ", trasaction amount " + user.transactions.get(i).getAmount());
+				System.out.println((i+1)+"- Transaction type: " + user.transactions.get(i).type+ ", trasaction amount " + user.transactions.get(i).getAmount()+" EGP");
 			}
 		}
 		int option = input.nextInt();
