@@ -13,6 +13,7 @@ import com.example.fawrywebApp.model.User;
 import com.example.fawrywebApp.model.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -81,6 +82,21 @@ public class SpringRegistrationController {
         sessionsDatabase.printDatabase();
         return response;
 
+    }
+    @DeleteMapping("/logOut/{uuid}")
+    public Response logOut(@PathVariable("uuid") UUID uuid) {
+    	System.out.println("user log out");
+    	Response response = new Response();
+    	ActiveSessions sessionsDatabase = ActiveSessions.getInstance(); 
+    	if(sessionsDatabase.checkSession(uuid)){
+    		response.setStatus(true);
+    		sessionsDatabase.removeSession(uuid);
+    		System.out.println("UUID has been deleted");
+    		response.setMessage("user was log out successfully!");
+    		return response;
+    	}
+    	response.setStatus(false);
+    	return response;
     }
 
 
