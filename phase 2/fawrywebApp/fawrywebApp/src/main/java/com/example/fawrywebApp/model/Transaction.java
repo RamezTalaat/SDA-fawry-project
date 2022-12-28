@@ -24,6 +24,9 @@ public abstract class Transaction {
 	 }
 }*/
 package com.example.fawrywebApp.model;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /*enum transactionType
 {
 	paymentTransaction,
@@ -48,6 +51,7 @@ public abstract class Transaction {
 	 {
 		 return amount;
 	 }
+	 @JsonBackReference
 	 public User getUser()
 	 {
 		 return user;

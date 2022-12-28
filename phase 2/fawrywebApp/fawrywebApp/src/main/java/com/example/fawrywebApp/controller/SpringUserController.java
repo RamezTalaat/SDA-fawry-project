@@ -3,10 +3,8 @@ package com.example.fawrywebApp.controller;
 import com.example.fawrywebApp.database.ActiveSessions;
 import com.example.fawrywebApp.model.Response;
 import com.example.fawrywebApp.model.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.UUID;
 
@@ -43,5 +41,34 @@ public class SpringUserController {
         }
         return response;
 
+    }
+
+    @PostMapping("/addMoneyToWallet/{uuid}/{amount}")
+    public Response  addMoneyToWallet (@PathVariable ("uuid") UUID uuid , @PathVariable int amount){
+        System.out.println("in add money to wallet");
+        ActiveSessions sessions = ActiveSessions.getInstance();
+
+        Response response = new Response();
+        if(sessions.checkSession(uuid)){ // if uuid is in an active session
+            User currentUser = sessions.getUser(uuid);
+            WalletController walletController = new WalletController();
+
+            if ( walletController.setTransaction(currentUser , amount, null, null)) {
+                response.setStatus(true);
+                response.setMessage(amount + " was added to your wallet , your new wallet balance is " + currentUser.getWallet().getAmount());
+                System.out.println(amount + " added to " + currentUser.getName()+
+                        " wallet balance  , new wallet balance = "+currentUser.getWallet().getAmount()+" EGP");
+            }
+            else {
+                response.setStatus(false);
+                response.setMessage("could not add to wallet , insufficient amount of money in your credit card");
+                System.out.println("failed add to wallet operation by " + currentUser.getName());   // system log
+            }
+        }
+        else{
+            response.setStatus(false);
+            response.setMessage("user not logged in , please log in first");
+        }
+        return response;
     }
 }

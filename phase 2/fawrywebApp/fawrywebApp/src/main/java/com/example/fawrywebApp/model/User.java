@@ -1,4 +1,6 @@
 package com.example.fawrywebApp.model;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Random;
 import java.util.Vector;
 
@@ -56,5 +58,10 @@ public class User {
 
     public Wallet getWallet() {
         return wallet;
+    }
+
+    @JsonManagedReference
+    public Vector<Transaction> getTransactions() {
+        return transactions;
     }
 }
