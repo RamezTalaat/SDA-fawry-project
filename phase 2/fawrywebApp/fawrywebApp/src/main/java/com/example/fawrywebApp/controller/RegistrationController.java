@@ -38,5 +38,6 @@ public class RegistrationController {
 		}
 		return true;
 	}
+	
 }
 
