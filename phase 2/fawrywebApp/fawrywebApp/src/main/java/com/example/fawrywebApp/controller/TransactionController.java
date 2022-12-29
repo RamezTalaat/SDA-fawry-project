@@ -1,5 +1,8 @@
 package com.example.fawrywebApp.controller;
 import com.example.fawrywebApp.model.*;
+
+import java.util.Vector;
+
 import com.example.fawrywebApp.database.TransactionDataBase;
 public abstract  class TransactionController {
 	public TransactionDataBase transactionDatabase = TransactionDataBase.getInstance();
@@ -28,9 +31,9 @@ public abstract  class TransactionController {
 	public void addTransactionToDatabase(Transaction transaction) {
 		transactionDatabase.addTransaction(transaction);
 	}
-	public void listTransactions() //may have a form to talk to the user
+	public Vector<Transaction> getTransactions() //may have a form to talk to the user
 	{
-		if(transactionDatabase.transactions.isEmpty()) {
+		/*if(transactionDatabase.transactions.isEmpty()) {
 			System.out.println("No transactions yet");
 		}
 		else {
@@ -44,7 +47,9 @@ public abstract  class TransactionController {
 				}
 				System.out.println("Amount : " + transactionDatabase.transactions.get(i).getAmount());
 			}
-		}
+		}*/
+		return TransactionDataBase.getInstance().transactions;
+		
 	}
 }
 

@@ -59,7 +59,9 @@ public class User implements IGeneralUser{
     public Wallet getWallet() {
         return wallet;
     }
-
+    public String getType() {
+		return "User";
+	}
     @JsonManagedReference
     public Vector<Transaction> getTransactions() {
         return transactions;

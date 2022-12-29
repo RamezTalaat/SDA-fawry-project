@@ -28,4 +28,7 @@ public class Admin implements IGeneralUser {
     {
     	return mail;
     }
+	public String getType() {
+		return "Admin";
+	}
 }
