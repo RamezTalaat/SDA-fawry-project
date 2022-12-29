@@ -1,11 +1,11 @@
+package com.example.fawrywebApp.APIServices;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.example.fawrywebApp.controller;
-
 import java.util.UUID;
 
+import com.example.fawrywebApp.controller.RegistrationController;
 import com.example.fawrywebApp.database.ActiveSessions;
 import com.example.fawrywebApp.model.User;
 import com.example.fawrywebApp.model.Admin;

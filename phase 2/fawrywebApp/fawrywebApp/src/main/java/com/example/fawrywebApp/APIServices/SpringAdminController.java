@@ -1,4 +1,4 @@
-package com.example.fawrywebApp.controller;
+package com.example.fawrywebApp.APIServices;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

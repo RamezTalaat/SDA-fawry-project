@@ -1,5 +1,7 @@
-package com.example.fawrywebApp.controller;
+package com.example.fawrywebApp.APIServices;
 
+import com.example.fawrywebApp.controller.RegistrationController;
+import com.example.fawrywebApp.controller.WalletController;
 import com.example.fawrywebApp.database.ActiveSessions;
 import com.example.fawrywebApp.model.Response;
 import com.example.fawrywebApp.model.User;
