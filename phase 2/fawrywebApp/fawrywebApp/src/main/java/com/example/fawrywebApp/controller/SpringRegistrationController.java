@@ -85,6 +85,21 @@ public class SpringRegistrationController {
         return response;
 
     }
+    @DeleteMapping("/logOut/{uuid}")
+    public Response logOut(@PathVariable("uuid") UUID uuid) {
+    	System.out.println("user log out");
+    	Response response = new Response();
+    	ActiveSessions sessionsDatabase = ActiveSessions.getInstance(); 
+    	if(sessionsDatabase.checkSession(uuid)){
+    		response.setStatus(true);
+    		sessionsDatabase.removeSession(uuid);
+    		System.out.println("UUID has been deleted");
+    		response.setMessage("user was log out successfully!");
+    		return response;
+    	}
+    	response.setStatus(false);
+    	return response;
+    }
 
     @PostMapping("/signInAsAdmin")
     public Response signIn(@RequestBody Admin admin){
