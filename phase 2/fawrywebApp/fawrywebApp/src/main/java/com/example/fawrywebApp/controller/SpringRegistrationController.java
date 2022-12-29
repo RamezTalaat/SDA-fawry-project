@@ -8,16 +8,19 @@ import java.util.UUID;
 
 import com.example.fawrywebApp.database.ActiveSessions;
 import com.example.fawrywebApp.model.User;
+import com.example.fawrywebApp.model.Admin;
 //import com.example.fawrywebApp.service.PersonService;
 //import com.example.fawrywebApp.service.PersonServiceImpl;
 import com.example.fawrywebApp.model.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -83,6 +86,55 @@ public class SpringRegistrationController {
 
     }
 
+    @PostMapping("/signInAsAdmin")
+    public Response signIn(@RequestBody Admin admin){
+        Admin adminData  = new Admin();
+        adminData.setName("admin");   //default admin data
+        adminData.setPassword("admin");
+        adminData.setMail("admin@gmail.com");
+
+        System.out.println("in admin sign in");
+        Response response = new Response();
+        ActiveSessions sessionsDatabase = ActiveSessions.getInstance();
+        if(sessionsDatabase.checkUserSession(admin)){    //if ADMIN is already signed in
+            response.setStatus(false);
+            response.setMessage("user " + admin.getMail() + " is already signed in");
+            return response;
+        }
+        if (admin.getName().equals(adminData.getName()) || admin.getMail().equals(adminData.getMail()) ||admin.getPassword().equals(adminData.getPassword())  ){
+        	UUID uuid=UUID.randomUUID();   // to generate random session
+            sessionsDatabase.addSession(uuid , adminData);
+
+            System.out.println("Done, admin logged in successfully!");
+            response.setStatus(true);
+            response.setMessage("Welcome welcome dear admin");
+            response.object = uuid;
+            sessionsDatabase.printDatabase();
+            return response;
+        }
+
+        response.setStatus(false);
+        response.setMessage("Wrong admin credentials , access denied");
+        return response;
+
+    }
+    @DeleteMapping("/signOutAsAdmin/{uuid}")
+    public Response signOutAsAdmin (@PathVariable("uuid") UUID uuid){
+    	Response response = new Response();
+        ActiveSessions activeSessions = ActiveSessions.getInstance();
+        if(activeSessions.checkSession(uuid)) {  // if admin is already loged in
+        	activeSessions.removeSession(uuid);
+        	response.setStatus(true);
+        	response.setMessage("Admin signed out successfully");
+        	return response;
+        }
+        response.setStatus(false);
+        response.setMessage("Admin with uuid " + uuid + " was not signed in the system");
+        return response;
+
+        
+
+    }
 
 
     /*@PostMapping("/add")

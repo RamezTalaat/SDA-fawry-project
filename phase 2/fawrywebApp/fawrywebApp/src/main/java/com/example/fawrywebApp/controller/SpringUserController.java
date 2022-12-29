@@ -4,7 +4,6 @@ import com.example.fawrywebApp.database.ActiveSessions;
 import com.example.fawrywebApp.model.Response;
 import com.example.fawrywebApp.model.User;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.UUID;
 
@@ -20,7 +19,7 @@ public class SpringUserController {
         Response response = new Response();
 
         if(sessions.checkSession(uuid)){ // if uuid is in an active session
-            User tmpUser = sessions.getUser(uuid);
+            User tmpUser = (User) sessions.getUser(uuid);  //because it is guaranteed to be a user not an admin
             RegistrationController registrationController = new RegistrationController();
             tmpUser = registrationController.checkUserExistence(tmpUser.getMail(), tmpUser.getPassword());
 
@@ -50,13 +49,13 @@ public class SpringUserController {
 
         Response response = new Response();
         if(sessions.checkSession(uuid)){ // if uuid is in an active session
-            User currentUser = sessions.getUser(uuid);
+            User currentUser = (User)sessions.getUser(uuid);
             WalletController walletController = new WalletController();
 
             if ( walletController.setTransaction(currentUser , amount, null, null)) {
                 response.setStatus(true);
                 response.setMessage(amount + " was added to your wallet , your new wallet balance is " + currentUser.getWallet().getAmount());
-                System.out.println(amount + " added to " + currentUser.getName()+
+                System.out.println(amount + "added to " + currentUser.getName()+
                         " wallet balance  , new wallet balance = "+currentUser.getWallet().getAmount()+" EGP");
             }
             else {

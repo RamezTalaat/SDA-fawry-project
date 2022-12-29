@@ -1,6 +1,7 @@
 package com.example.fawrywebApp.database;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
+import com.example.fawrywebApp.model.IGeneralUser;
 import com.example.fawrywebApp.model.Person;
 import com.example.fawrywebApp.model.User;
 
@@ -10,7 +11,7 @@ import java.util.UUID;
 import java.util.Vector;
 
 public class ActiveSessions {
-    public static Map<UUID, User> sessions;
+    public static Map<UUID, IGeneralUser> sessions;
     //public Vector<UUID> sessions ;
     private static ActiveSessions instance = null;
     private ActiveSessions(){
@@ -24,21 +25,21 @@ public class ActiveSessions {
         return instance;
     }
 
-    public void addSession (UUID uuid , User user){
+    public void addSession (UUID uuid , IGeneralUser user){
         sessions.put(uuid , user);
-        //sessions.add(uuid);
+      
     }
     public void removeSession(UUID uuid){
         sessions.remove(uuid);
     }
     public boolean checkSession (UUID uuid){
         return sessions.containsKey(uuid);
-        //return sessions.contains(uuid);
+        
     }
-    public User getUser (UUID uuid){
+    public IGeneralUser getUser (UUID uuid){
         return sessions.get(uuid);
     }
-    public UUID getUUID (User user){
+    public UUID getUUID (IGeneralUser user){
         for (Map.Entry mp : sessions.entrySet()) {
             User tmp = (User) mp.getValue();
             if(tmp.getMail().equals(user.getMail()) ){
@@ -47,9 +48,9 @@ public class ActiveSessions {
         }
         return null;
     }
-    public boolean checkUserSession(User user){
+    public boolean checkUserSession(IGeneralUser user){
 
-        System.out.println("checking user + " + user.getName());
+        System.out.println("checking request owner : " + user.getName());
         for (Map.Entry mp : sessions.entrySet()) {
             User tmp = (User) mp.getValue();
             if(tmp.getMail().equals(user.getMail()) ){
@@ -61,8 +62,10 @@ public class ActiveSessions {
     }
 
     public void printDatabase() {
+        IGeneralUser tmpUser;
         for (Map.Entry mp : sessions.entrySet()) {
-           System.out.println(mp.getKey() + "-> " + mp.getValue());
+            tmpUser =  (IGeneralUser) mp.getValue();
+            System.out.println(mp.getKey() + "-> " + tmpUser.getName());
         }
 
     }

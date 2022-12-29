@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.Random;
 import java.util.Vector;
 
-public class User {
+public class User implements IGeneralUser{
     private String name;
     private String password;
     private String mail;
