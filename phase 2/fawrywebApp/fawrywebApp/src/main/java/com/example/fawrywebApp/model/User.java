@@ -14,7 +14,7 @@ public class User implements IGeneralUser{
     public Discount discount;
     public Vector<Transaction> transactions;
     Random random = new Random();
-    Wallet wallet ;
+    public Wallet wallet ;
     public User()
     {
         ID = idCount++;
