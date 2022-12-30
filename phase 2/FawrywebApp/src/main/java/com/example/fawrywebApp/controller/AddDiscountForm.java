@@ -1,13 +1,12 @@
 package com.example.fawrywebApp.controller;
 
 import java.util.Scanner;
-enum discountType{
-	overall,specific
-}
+
+import com.example.fawrywebApp.model.DiscountType;
 
 public class AddDiscountForm {
 	public int amount;
-	public discountType type;
+	public DiscountType type;
 	public	int minimumTransactions , maximumTransactions;
 	public String service;
 	protected String name;
@@ -29,7 +28,7 @@ public class AddDiscountForm {
 		System.out.println("2- Specific discount     (for services)");
 		option = input.nextInt();
 		if(option ==1) {
-			type = discountType.overall;
+			type = DiscountType.overall;
 			System.out.println("Input minimum transactions per user");
 			minimumTransactions = input.nextInt();
 			System.out.println("Input maximum transactions per user");
@@ -37,7 +36,7 @@ public class AddDiscountForm {
 			
 		}
 		else if(option == 2) {
-			type = discountType.specific;
+			type = DiscountType.specific;
 			System.out.println("Input discounted service name");
 			input.nextLine();
 			service = input.nextLine();

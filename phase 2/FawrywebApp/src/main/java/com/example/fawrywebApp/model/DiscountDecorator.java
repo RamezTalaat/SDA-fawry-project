@@ -1,12 +1,13 @@
-package com.example.fawrywebApp.controller;
+package com.example.fawrywebApp.model;
 
 public class DiscountDecorator implements Discount {
-	private Discount wrappee;
-	protected int amount;
-	protected discountType type;
-	protected	int minimumTransactions , maximumTransactions;
-	protected String service;
-	protected String name;
+	public Discount wrappee;
+	public int amount;
+	public DiscountType type;
+	public	int minimumTransactions;
+	public int maximumTransactions;
+	public String service;
+	public String name;
 	
 	public DiscountDecorator( int _amount) {
 		// TODO Auto-generated constructor stub

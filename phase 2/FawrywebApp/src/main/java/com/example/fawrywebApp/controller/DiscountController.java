@@ -1,4 +1,11 @@
-package component1;
+package com.example.fawrywebApp.controller;
+
+import com.example.fawrywebApp.database.DiscountDatabase;
+import com.example.fawrywebApp.database.ServiceDatabase;
+import com.example.fawrywebApp.database.UsersDatabase;
+import com.example.fawrywebApp.model.Discount;
+import com.example.fawrywebApp.model.DiscountDecorator;
+import com.example.fawrywebApp.model.DiscountType;
 
 public class DiscountController {
 
@@ -6,18 +13,20 @@ public class DiscountController {
 	ServiceDatabase serviceDatabase = ServiceDatabase.getInstance();
 	UsersDatabase usersDatabase = UsersDatabase.getInstance();
 	
-	public void makeDiscount(AddDiscountForm form)
+	public void makeDiscount(DiscountDecorator discount_)
 	{
-		DiscountDecorator discount = new DiscountDecorator(form.amount);
+		DiscountDecorator discount = discount_;
+		
+		/*DiscountDecorator discount = new DiscountDecorator(form.amount);
 		discount.amount =  form.amount;
 		discount.type = form.type;
 		discount.minimumTransactions = form.minimumTransactions;
 		discount.maximumTransactions = form.maximumTransactions;
 		discount.service = form.service;
-		discount.name = form.name;
+		discount.name = form.name;*/
 		discountDatabase.addDiscount(discount);//discount added to database
 		
-		if(discount.type == discountType.overall) { // add to users
+		if(discount.type == DiscountType.overall) { // add to users
 			for (int i = 0; i < usersDatabase.users.size(); i++) {// to add discount to users
 				int numberOfTransactions = usersDatabase.users.get(i).transactions.size();
 				if(numberOfTransactions >= discount.minimumTransactions && numberOfTransactions <= discount.maximumTransactions) {

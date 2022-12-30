@@ -1,10 +1,13 @@
-package component1;
+package com.example.fawrywebApp.database;
 
 import java.util.Vector;
 
+import com.example.fawrywebApp.model.DiscountDecorator;
+
+
 public class DiscountDatabase {
 	private static DiscountDatabase instance = null;
-	Vector<DiscountDecorator> discounts = new Vector<DiscountDecorator>();
+	public Vector<DiscountDecorator> discounts = new Vector<DiscountDecorator>();
 	private DiscountDatabase() {
 		// TODO Auto-generated constructor stub
 		
