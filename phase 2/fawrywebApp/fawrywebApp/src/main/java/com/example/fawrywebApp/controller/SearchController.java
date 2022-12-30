@@ -16,17 +16,10 @@ public class SearchController {
 		searchedServices = new Vector<Service>();
 	}
 	
-	public void searchForService() {
-		Scanner input = new Scanner(System.in);
+	public Vector<Service> searchForService(String searchedService) {
 		ServiceDatabase serviceDatabase = ServiceDatabase.getInstance();
 		Vector<Service> searchedServices = new Vector<Service>();
-		String searchedService;
-		
-		System.out.println("Enter service name to search");
-		//input.nextLine();   // to clear buffer from /n after nextInt() input
-		searchedService = input.nextLine();
 			for (int j = 0; j < serviceDatabase.services.size(); j++) {
-				
 				Service service = serviceDatabase.services.get(j);
 				String serviceName = service.getName();
 				int firstIdx =-1;
@@ -74,6 +67,6 @@ public class SearchController {
 				System.out.println(i+1 + "- " + searchedServices.get(i).getName() + "	Type: " +searchedServices.get(i).getType() );
 			}
 		}
+		return searchedServices;
 	}
-	
 }

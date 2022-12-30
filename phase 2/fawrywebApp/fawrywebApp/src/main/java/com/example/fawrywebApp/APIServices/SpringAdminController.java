@@ -1,6 +1,7 @@
 package com.example.fawrywebApp.APIServices;
 
 import java.util.UUID;
+import java.util.Vector;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +23,8 @@ import com.example.fawrywebApp.model.User;
 @RequestMapping("/AdminController")
 public class SpringAdminController {
 	@GetMapping("/getTransactions/{uuid}")
-	public Response getTransactions(@PathVariable ("uuid") UUID uuid) {
-		Response response=new Response();
+	public Response<Vector<Transaction>> getTransactions(@PathVariable ("uuid") UUID uuid) {
+		Response<Vector<Transaction>> response=new Response<Vector<Transaction>>();
 		ActiveSessions activeSessions=ActiveSessions.getInstance();
 		if(!activeSessions.checkSession(uuid) || activeSessions.getUser(uuid).getType()=="User") {
 			response.setStatus(false);

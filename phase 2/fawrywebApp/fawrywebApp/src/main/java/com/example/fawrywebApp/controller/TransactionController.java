@@ -15,6 +15,8 @@ public abstract  class TransactionController {
 			Transaction transaction = createTransaction();
 			transaction.setAmount(amount);
 			transaction.setUser(user);
+			transaction.setUserName(user.getName());
+			transaction.setUserMail(user.getMail());
 			if(transaction.type.equals("paymentTransaction")) {
 				transaction.setService(service);
 			}
@@ -33,21 +35,7 @@ public abstract  class TransactionController {
 	}
 	public Vector<Transaction> getTransactions() //may have a form to talk to the user
 	{
-		/*if(transactionDatabase.transactions.isEmpty()) {
-			System.out.println("No transactions yet");
-		}
-		else {
-			for (int i = 0; i < transactionDatabase.transactions.size(); i++) {
-				System.out.println("Transaction " + (i+1) +" : ");
-				System.out.println("Transaction type: "+transactionDatabase.transactions.get(i).type);
-				System.out.println("User Name : " + transactionDatabase.transactions.get(i).getUser().getName());
-				if(transactionDatabase.transactions.get(i).type.equals("paymentTransaction")) {
-					System.out.println("Service Name : " + transactionDatabase.transactions.get(i).getService().getName());
-					System.out.println("Service Type : " + transactionDatabase.transactions.get(i).getService().getType());
-				}
-				System.out.println("Amount : " + transactionDatabase.transactions.get(i).getAmount());
-			}
-		}*/
+		
 		return TransactionDataBase.getInstance().transactions;
 		
 	}

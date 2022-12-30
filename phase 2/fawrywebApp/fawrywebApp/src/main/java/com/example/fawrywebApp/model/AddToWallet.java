@@ -2,7 +2,7 @@ package com.example.fawrywebApp.model;
 
 public class AddToWallet extends Transaction{
 	//private Transaction transaction;
-	private User user;
+	//private User user;
 	int amount;
 	public AddToWallet()
 	{

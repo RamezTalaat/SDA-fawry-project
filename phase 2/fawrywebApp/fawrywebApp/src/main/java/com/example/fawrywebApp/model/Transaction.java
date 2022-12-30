@@ -39,13 +39,16 @@ public abstract class Transaction {
 	 User user;
 	 int amount;
 	 Service service;
-	 //public transactionType type;
+	 String UserName;
+	 String UserMail;
 	 public String type;
 	 public void setAmount(int _amount){
 		 amount = _amount;
 	 }
 	 public void setUser(User _user){
 		 user = _user;
+		 UserName = _user.getName();
+		 UserMail = _user.getMail();
 	 }
 	 public int getAmount()
 	 {
@@ -64,5 +67,17 @@ public abstract class Transaction {
 	 {
 		 return service;
 	 }
+	 public String getUserName() {
+		return UserName;
+	}
+	 public String getUserMail() {
+		return UserMail;
+	}
+	 public void setUserMail(String userMail) {
+		UserMail = userMail;
+	}
+	 public void setUserName(String userName) {
+		UserName = userName;
+	}
 }
 
