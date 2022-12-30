@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.fawrywebApp.controller.DiscountController;
 import com.example.fawrywebApp.controller.PaymentController;
+import com.example.fawrywebApp.controller.RefundController;
+import com.example.fawrywebApp.controller.RefundRequestController;
 import com.example.fawrywebApp.controller.SearchController;
 import com.example.fawrywebApp.controller.TransactionController;
 import com.example.fawrywebApp.controller.WalletController;
@@ -20,6 +22,7 @@ import com.example.fawrywebApp.model.Admin;
 import com.example.fawrywebApp.model.Discount;
 import com.example.fawrywebApp.model.DiscountDecorator;
 import com.example.fawrywebApp.model.DiscountType;
+import com.example.fawrywebApp.model.RefundRequest;
 import com.example.fawrywebApp.model.Response;
 import com.example.fawrywebApp.model.Service;
 import com.example.fawrywebApp.model.Transaction;
@@ -99,6 +102,40 @@ public class SpringAdminController {
 		}
 		
 		
+	}
+	@PostMapping("/acceptOrRejectRefundRequest/{uuid}/{refundRequestID}/{answer}")
+	public Response<Transaction> acceptOrRejectRefundRequest(@PathVariable ("uuid") UUID uuid, @PathVariable ("refundRequestID") int refundRequestID ,@PathVariable ("answer")String answer ) {
+		Response<Transaction> response = new Response<Transaction>(); 
+		ActiveSessions sessions = ActiveSessions.getInstance();
+		RefundRequestController refundRequestController = new RefundRequestController();
+		TransactionController transactionController = new RefundController();
+		if(!sessions.checkSession(uuid) || !sessions.getUser(uuid).getType().equals("admin") ) {
+			response.setStatus(false);
+			response.setMessage("admin with this uuid is not signed in the system");
+			return response;
+		}
+		RefundRequest refundRequest = refundRequestController.getRefundRequest(refundRequestID);
+		if(refundRequest == null) {
+			response.setStatus(false);
+			response.setMessage("Sorry, wrong refund request ID");
+			return response;
+		}
+		if(answer.equals("reject")){
+			refundRequestController.removeRequest(refundRequest, answer);
+			response.setStatus(true);
+			response.setMessage("Done, refund request has been rejected ");
+			return response;
+		}
+		if(!transactionController.setTransaction(refundRequest.getUser(),refundRequest.getTransaction().getAmount() ,refundRequest.getTransaction(), refundRequest.getTransaction().getService())) {
+			response.setStatus(false);
+			response.setMessage("Sorry, error occurred");
+			return response;
+		}
+		response.object=refundRequest.getTransaction();
+		refundRequestController.removeRequest(refundRequest, answer);
+		response.setStatus(true);
+		response.setMessage("Done, refund request has been approved");
+		return response;
 	}
 }
 
