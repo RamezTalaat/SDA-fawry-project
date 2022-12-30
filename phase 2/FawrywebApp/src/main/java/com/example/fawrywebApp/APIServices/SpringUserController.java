@@ -8,6 +8,7 @@ import com.example.fawrywebApp.controller.WalletController;
 import com.example.fawrywebApp.database.ActiveSessions;
 import com.example.fawrywebApp.database.DiscountDatabase;
 import com.example.fawrywebApp.database.UsersDatabase;
+import com.example.fawrywebApp.model.Discount;
 import com.example.fawrywebApp.model.DiscountDecorator;
 import com.example.fawrywebApp.model.IGeneralUser;
 import com.example.fawrywebApp.model.RefundRequest;
@@ -121,7 +122,7 @@ public class SpringUserController
     @GetMapping("/listAvailableDiscounts/{uuid}")
     public Response listAvailableDiscounts(@PathVariable ("uuid") UUID uuid)
     {
-    	Response<Vector<DiscountDecorator>> response = new Response<Vector<DiscountDecorator>>(); // to return discounts vector in JSON object
+    	Response<Vector<Discount>> response = new Response<Vector<Discount>>(); // to return discounts vector in JSON object
     	if(!ActiveSessions.getInstance().checkSession(uuid)) {
     		response.setStatus(false);
     		response.setMessage("User not logged in , please log in first");
@@ -136,7 +137,8 @@ public class SpringUserController
     	System.out.println("user of uuid : " + uuid + " is listing available discounts");
     	response.setStatus(true);
     	response.setMessage("This is the list of available discounts");
-    	response.object =  discountDatabase.discounts;
+    	DiscountController controller = new DiscountController();
+    	response.object =  controller.getDisplayDiscounts();
     	
     	return response;
     }
