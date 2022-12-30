@@ -2,10 +2,13 @@ package com.example.fawrywebApp.model;
 
 public class RefundRequest {
 	User user;
-	public Transaction transaction;
+	private int ID;
+	static int idCount=1;
+	private Transaction transaction;
 	public RefundRequest(User u , Transaction t)
 	{
 		user = u;
+		ID=idCount++;
 		transaction = t;
 	}
 	public void setTransaction(Transaction transaction_)
@@ -24,4 +27,8 @@ public class RefundRequest {
 	{
 		return user;
 	}
+	public int getID() {
+		return ID;
+	}
+	
 }

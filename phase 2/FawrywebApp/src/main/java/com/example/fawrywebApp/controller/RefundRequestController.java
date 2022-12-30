@@ -23,7 +23,7 @@ public class RefundRequestController {
 	public boolean checkTransactionExistence(int option, User user)
 	{
 		for(int i=0; i<refundRequestDatabase.refundRequests.size(); i++) {
-			if(user.transactions.get(option-1).equals(refundRequestDatabase.refundRequests.get(i).transaction)) {
+			if(user.transactions.get(option-1).equals(refundRequestDatabase.refundRequests.get(i).getTransaction())) {
 				return true;
 			}
 		}
@@ -44,7 +44,7 @@ public class RefundRequestController {
 			System.out.println("Sorry, no pending refund requests");
 			return;
 		}
-		for(int i=0; i<refundRequestDatabase.refundRequests.size(); i++) {
+		for(int i=0; i<refundRequestDatabase.refundRequests.size(); i++){
 			System.out.println("Request "+(i+1)+" :-");
 			System.out.println("Requested by "+refundRequestDatabase.refundRequests.get(i).getTransaction().getUser().getName());
 			System.out.println("Transaction type: "+refundRequestDatabase.refundRequests.get(i).getTransaction().type);
@@ -65,12 +65,20 @@ public class RefundRequestController {
 			}
 		}
 		if(answer.equals("approve")) {
-			for(int i=0; i<refundRequest.getUser().transactions.size(); i++) {
+			for(int i=0; i<refundRequest.getUser().transactions.size(); i++){
 				if(refundRequest.getTransaction() == refundRequest.getUser().transactions.get(i)) {
 					refundRequest.getUser().transactions.remove(i);
 					break;
 				}
 			}
 		}
+	}
+	public RefundRequest getRefundRequest(int ID) {
+		for(int i = 0 ; i < refundRequestDatabase.refundRequests.size(); i++) {
+			if(ID == refundRequestDatabase.refundRequests.get(i).getID()) {
+				return refundRequestDatabase.refundRequests.get(i);
+			}
+		}
+		return null;
 	}
 }
