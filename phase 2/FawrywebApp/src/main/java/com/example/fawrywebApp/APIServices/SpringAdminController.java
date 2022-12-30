@@ -56,6 +56,7 @@ public class SpringAdminController {
 		Response response = new Response();
 		ActiveSessions activeSessions =ActiveSessions.getInstance();
 		if(activeSessions.checkSession(uuid)) {  // if admin had an active session
+			System.out.println("Discount "+discountName + " was added to the system"); // for system log purposes
 			DiscountDecorator discount =new  DiscountDecorator(amount);
 			DiscountController discountController = new DiscountController();
 			discount.type = DiscountType.specific;
@@ -79,6 +80,7 @@ public class SpringAdminController {
 		Response response = new Response();
 		ActiveSessions activeSessions =ActiveSessions.getInstance();
 		if(activeSessions.checkSession(uuid)) {  // if admin had an active session
+			System.out.println("Discount "+discountName + " was added to the system"); // for system log purposes
 			DiscountDecorator discount =new  DiscountDecorator(amount);
 			DiscountController discountController = new DiscountController();
 			discount.type = DiscountType.overall;
@@ -87,7 +89,7 @@ public class SpringAdminController {
 			discount.maximumTransactions = maximumTransactions;
 			discountController.makeDiscount(discount);
 			response.setStatus(true);
-			response.setMessage("Discount : " + discountName + " was added successfully to designated users");
+			response.setMessage("Discount : " + discountName + " ,was added successfully to designated users");
 			return response;
 		}
 		else { // if admin was not logged in the system

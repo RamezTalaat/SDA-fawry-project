@@ -1,11 +1,14 @@
 package com.example.fawrywebApp.APIServices;
 
+import com.example.fawrywebApp.controller.DiscountController;
 import com.example.fawrywebApp.controller.RefundRequestController;
 import com.example.fawrywebApp.controller.RegistrationController;
 import com.example.fawrywebApp.controller.TransactionController;
 import com.example.fawrywebApp.controller.WalletController;
 import com.example.fawrywebApp.database.ActiveSessions;
+import com.example.fawrywebApp.database.DiscountDatabase;
 import com.example.fawrywebApp.database.UsersDatabase;
+import com.example.fawrywebApp.model.DiscountDecorator;
 import com.example.fawrywebApp.model.IGeneralUser;
 import com.example.fawrywebApp.model.RefundRequest;
 import com.example.fawrywebApp.model.Response;
@@ -34,10 +37,7 @@ public class SpringUserController
         response.setStatus(true);
         response.setMessage("User data returned successfully");
         return response;
-<<<<<<< Updated upstream
-=======
-       
->>>>>>> Stashed changes
+
     }
 
     @PostMapping("/addMoneyToWallet/{uuid}/{amount}")
@@ -115,6 +115,29 @@ public class SpringUserController
     	}
     	response.setStatus(true);
     	response.setMessage("Done, a refund request has been made successfully!");
+    	return response;
+    }
+    
+    @GetMapping("/listAvailableDiscounts/{uuid}")
+    public Response listAvailableDiscounts(@PathVariable ("uuid") UUID uuid)
+    {
+    	Response<Vector<DiscountDecorator>> response = new Response<Vector<DiscountDecorator>>(); // to return discounts vector in JSON object
+    	if(!ActiveSessions.getInstance().checkSession(uuid)) {
+    		response.setStatus(false);
+    		response.setMessage("User not logged in , please log in first");
+    		return response;
+    	}
+    	DiscountDatabase discountDatabase = DiscountDatabase.getInstance();
+    	if(discountDatabase.discounts.size() == 0) {
+    		response.setStatus(false);
+    		response.setMessage("No available discounts yet");
+    		return response;
+    	}
+    	System.out.println("user of uuid : " + uuid + " is listing available discounts");
+    	response.setStatus(true);
+    	response.setMessage("This is the list of available discounts");
+    	response.object =  discountDatabase.discounts;
+    	
     	return response;
     }
 }

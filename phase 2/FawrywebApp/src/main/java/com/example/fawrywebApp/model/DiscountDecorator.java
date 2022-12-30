@@ -21,8 +21,10 @@ public class DiscountDecorator implements Discount {
 	@Override
 	public int getAmount() { // returns the amount of itself and other discounts
 		// TODO Auto-generated method stub
+		if(wrappee != null)
+			return amount + wrappee.getAmount();
+		return amount;
 		
-		return amount + wrappee.getAmount();
 	}
 	
 }
