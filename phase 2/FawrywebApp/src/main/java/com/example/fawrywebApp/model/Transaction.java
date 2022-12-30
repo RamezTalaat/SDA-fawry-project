@@ -41,7 +41,13 @@ public abstract class Transaction {
 	 Service service;
 	 String UserName;
 	 String UserMail;
+	 private int ID;
+	 private static int transactionID = 0;
 	 public String type;
+	 public Transaction()
+	 {
+		 ID = ++transactionID;
+	 }
 	 public void setAmount(int _amount){
 		 amount = _amount;
 	 }
@@ -79,5 +85,9 @@ public abstract class Transaction {
 	 public void setUserName(String userName) {
 		UserName = userName;
 	}
+	 public int getID()
+	 {
+		 return ID;
+	 }
 }
 

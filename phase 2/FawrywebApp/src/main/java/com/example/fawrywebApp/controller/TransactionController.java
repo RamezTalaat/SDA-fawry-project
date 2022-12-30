@@ -39,5 +39,14 @@ public abstract  class TransactionController {
 		return TransactionDataBase.getInstance().transactions;
 		
 	}
+	public Transaction getUserTransaction(User user, int ID)
+	{
+		for(int i=0; i<user.transactions.size(); i++) {
+			if(user.transactions.get(i).getID() == ID) {
+				return user.transactions.get(i);
+			}
+		}
+		return null;
+	}
 }
 

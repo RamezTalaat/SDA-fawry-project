@@ -2,20 +2,24 @@ package com.example.fawrywebApp.controller;
 
 import com.example.fawrywebApp.database.RefundRequestDatabase;
 import com.example.fawrywebApp.model.RefundRequest;
+import com.example.fawrywebApp.model.Transaction;
 import com.example.fawrywebApp.model.User;
 
 public class RefundRequestController {
 	RefundRequestDatabase refundRequestDatabase = RefundRequestDatabase.getInstance();
-	/*public RefundRequestController(RefundRequestDatabase refundRequestDatabase_)
+	
+	public RefundRequest makeRefundRequest(User user, Transaction transaction)
 	{
-		refundRequestDatabase = refundRequestDatabase_;
-	}*/
-	public boolean makeRefundRequest(int option, User user)
-	{
-		RefundRequest refundRequest = new RefundRequest(user, user.transactions.get(option-1));
+		for(int i=0; i<refundRequestDatabase.refundRequests.size(); i++) {
+			if(refundRequestDatabase.refundRequests.get(i).getUser() == user && refundRequestDatabase.refundRequests.get(i).getTransaction() == transaction) {
+				return null;
+			}
+		}
+		RefundRequest refundRequest = new RefundRequest(user, transaction);
 		refundRequestDatabase.refundRequests.add(refundRequest);
-		return true;
+		return refundRequest;
 	}
+	
 	public boolean checkTransactionExistence(int option, User user)
 	{
 		for(int i=0; i<refundRequestDatabase.refundRequests.size(); i++) {
@@ -25,6 +29,7 @@ public class RefundRequestController {
 		}
 		return false;
 	}
+	
 	public boolean validateOption(int option, User user)
 	{
 		if(option > user.transactions.size()) {
@@ -32,6 +37,7 @@ public class RefundRequestController {
 		}
 		return true;
 	}
+	
 	public void listRefundRequests()
 	{
 		if(refundRequestDatabase.refundRequests.isEmpty()) {
@@ -49,6 +55,7 @@ public class RefundRequestController {
 			}
 		}
 	}
+	
 	public void removeRequest(RefundRequest refundRequest, String answer)
 	{
 		for(int i=0; i<refundRequestDatabase.refundRequests.size(); i++) {

@@ -1,26 +1,31 @@
 package com.example.fawrywebApp.APIServices;
 
+import com.example.fawrywebApp.controller.RefundRequestController;
 import com.example.fawrywebApp.controller.RegistrationController;
+import com.example.fawrywebApp.controller.TransactionController;
 import com.example.fawrywebApp.controller.WalletController;
 import com.example.fawrywebApp.database.ActiveSessions;
+import com.example.fawrywebApp.database.UsersDatabase;
+import com.example.fawrywebApp.model.IGeneralUser;
+import com.example.fawrywebApp.model.RefundRequest;
 import com.example.fawrywebApp.model.Response;
+import com.example.fawrywebApp.model.Transaction;
 import com.example.fawrywebApp.model.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
+import java.util.Vector;
 
 @RestController
 @RequestMapping("/UserController")
-public class SpringUserController {
-
+public class SpringUserController 
+{
     @GetMapping("/getUserInfo")
     public Response getUserInfo(@RequestBody User user){
         System.out.println("in get user info");
         ActiveSessions sessions = ActiveSessions.getInstance();
-
         Response response = new Response();
         response.object = sessions.checkSessionByUser(user);
-         
         if(response.object == null) {
         	response.setStatus(false);
         	response.setMessage("user not logged in , please log in first");
@@ -28,30 +33,7 @@ public class SpringUserController {
         }
         response.setStatus(true);
         response.setMessage("User data returned successfully");
-        
         return response;
-       /* if(sessions.checkSessionByUser(user)!= null){ // if uuid is in an active session
-            User tmpUser = new User();  //because it is guaranteed to be a user not an admin (user) sessions.get
-            RegistrationController registrationController = new RegistrationController();
-            tmpUser = registrationController.checkUserExistence(tmpUser.getMail(), tmpUser.getPassword());
-
-            if(tmpUser==null) {
-                System.out.println("failed to get user info , wrong password or mail");
-                response.setStatus(false);
-                response.setMessage("Wrong password or mail , there is no such user");
-                return response;
-            }
-            response.setStatus(true);
-            response.setMessage("User data returned successfully ");
-            response.object = tmpUser;
-            System.out.println("Done, user "+tmpUser.getName()+ " info retrieved!");
-        }
-        else{
-            response.setStatus(false);
-            response.setMessage("user not logged in , please log in first");
-        }*/
-        
-
     }
 
     @PostMapping("/addMoneyToWallet/{uuid}/{amount}")
@@ -78,8 +60,62 @@ public class SpringUserController {
         }
         else{
             response.setStatus(false);
-            response.setMessage("user not logged in , please log in first");
+            response.setMessage("User not logged in , please log in first");
         }
         return response;
     }
+    
+    @GetMapping("/getUserTransactions/{uuid}")
+    public Response<Vector<Transaction>> getUserTransaction(@PathVariable ("uuid") UUID uuid)
+    {
+    	Response<Vector<Transaction>> response = new Response<Vector<Transaction>>();
+    	if(!ActiveSessions.getInstance().checkSession(uuid)) {
+    		response.setStatus(false);
+    		response.setMessage("User not logged in , please log in first");
+    		return response;
+    	}
+    	response.setStatus(true);
+    	User user = (User)ActiveSessions.getInstance().getUser(uuid);
+    	response.object = user.transactions;
+    	if(response.object.size() == 0) {
+    		response.setMessage("Sorry, the user hasn't made any transactions yet!");
+    		return response;
+    	}
+    	response.setMessage("Done, user transactions retrived successfully!");
+    	return response;
+    }
+    
+    @PostMapping("/makeRefundRequest/{uuid}/{transactionID}")
+    public Response<RefundRequest> makeRefundRequest(@PathVariable ("uuid") UUID uuid, @PathVariable ("transactionID") int transactionID)
+    {
+    	Response<RefundRequest> response = new Response<RefundRequest>();
+    	if(!ActiveSessions.getInstance().checkSession(uuid)) {
+    		response.setStatus(false);
+    		response.setMessage("User not logged in , please log in first");
+    		return response;
+    	}
+    	TransactionController transactionController = new WalletController();
+    	Transaction transaction;
+    	transaction = transactionController.getUserTransaction((User)ActiveSessions.getInstance().getUser(uuid), transactionID);
+    	if(transaction == null) {
+    		response.setStatus(false);
+    		response.setMessage("Sorry, wrong transaction ID");
+    		return response;
+    	}
+    	RefundRequestController refundRequestController = new RefundRequestController();
+    	response.object = refundRequestController.makeRefundRequest((User)ActiveSessions.getInstance().getUser(uuid), transaction);
+    	if(response.object == null) {
+    		response.setStatus(false);
+        	response.setMessage("Sorry, a refund request has been already made for the selected transaction");
+        	return response;
+    	}
+    	response.setStatus(true);
+    	response.setMessage("Done, a refund request has been made successfully!");
+    	return response;
+    }
 }
+
+
+
+
+

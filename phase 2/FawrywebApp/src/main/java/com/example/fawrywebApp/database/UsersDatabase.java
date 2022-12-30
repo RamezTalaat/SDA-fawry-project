@@ -34,9 +34,6 @@ public class UsersDatabase {
 		}
 		return instance;
 	}
-	
-	
-
 }
 
 
