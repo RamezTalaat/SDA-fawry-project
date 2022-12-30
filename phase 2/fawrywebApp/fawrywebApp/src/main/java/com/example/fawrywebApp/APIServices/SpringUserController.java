@@ -13,15 +13,25 @@ import java.util.UUID;
 @RequestMapping("/UserController")
 public class SpringUserController {
 
-    @GetMapping("/getUserInfo/{uuid}")
-    public Response getUserInfo(@PathVariable("uuid") UUID uuid){
+    @GetMapping("/getUserInfo")
+    public Response getUserInfo(@RequestBody User user){
         System.out.println("in get user info");
         ActiveSessions sessions = ActiveSessions.getInstance();
 
         Response response = new Response();
-
-        if(sessions.checkSession(uuid)){ // if uuid is in an active session
-            User tmpUser = (User) sessions.getUser(uuid);  //because it is guaranteed to be a user not an admin
+        response.object = sessions.checkSessionByUser(user);
+         
+        if(response.object == null) {
+        	response.setStatus(false);
+        	response.setMessage("user not logged in , please log in first");
+        	return response;
+        }
+        response.setStatus(true);
+        response.setMessage("User data returned successfully");
+        
+        return response;
+       /* if(sessions.checkSessionByUser(user)!= null){ // if uuid is in an active session
+            User tmpUser = new User();  //because it is guaranteed to be a user not an admin (user) sessions.get
             RegistrationController registrationController = new RegistrationController();
             tmpUser = registrationController.checkUserExistence(tmpUser.getMail(), tmpUser.getPassword());
 
@@ -39,8 +49,8 @@ public class SpringUserController {
         else{
             response.setStatus(false);
             response.setMessage("user not logged in , please log in first");
-        }
-        return response;
+        }*/
+        
 
     }
 

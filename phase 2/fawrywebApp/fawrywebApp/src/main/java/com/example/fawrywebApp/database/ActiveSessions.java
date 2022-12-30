@@ -7,6 +7,7 @@ import com.example.fawrywebApp.model.User;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.Vector;
 
@@ -34,6 +35,15 @@ public class ActiveSessions {
     }
     public boolean checkSession (UUID uuid){
         return sessions.containsKey(uuid);
+        
+    }
+    public IGeneralUser checkSessionByUser (User user){
+    	for(Map.Entry<UUID, IGeneralUser> s : sessions.entrySet()) {
+    		if(s.getValue().getMail().equals(user.getMail()) && s.getValue().getPassword().equals(user.getPassword())) {
+    			return s.getValue();
+    		}
+    	}
+    	return null;
         
     }
     public IGeneralUser getUser (UUID uuid){

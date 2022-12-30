@@ -98,6 +98,7 @@ public class SpringRegistrationController {
     		return response;
     	}
     	response.setStatus(false);
+    	response.setMessage("user with uuid " + uuid + " was not signed in the system");
     	return response;
     }
 
