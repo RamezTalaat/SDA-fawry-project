@@ -1,0 +1,17 @@
+-- for Eclipse
++steps if project wan not runnable:
+1- file
+2- import 
+3- maven
+4- maven -> existing project
+5- choose a project path
+6- next -> finish
+
+N.B : always run as spring boot app 
+
+-- for IntelliJ
++steps if  project was not runnable
+1- settings 
+2- Build , Execution , deployment
+3- Maven
+4- Maven home path : -> Use Maven Wrapper
