@@ -34,6 +34,10 @@ public class SpringUserController
         response.setStatus(true);
         response.setMessage("User data returned successfully");
         return response;
+<<<<<<< Updated upstream
+=======
+       
+>>>>>>> Stashed changes
     }
 
     @PostMapping("/addMoneyToWallet/{uuid}/{amount}")

@@ -9,13 +9,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.fawrywebApp.controller.DiscountController;
 import com.example.fawrywebApp.controller.PaymentController;
+import com.example.fawrywebApp.controller.SearchController;
 import com.example.fawrywebApp.controller.TransactionController;
 import com.example.fawrywebApp.controller.WalletController;
 import com.example.fawrywebApp.database.ActiveSessions;
 import com.example.fawrywebApp.model.AddToWallet;
 import com.example.fawrywebApp.model.Admin;
 import com.example.fawrywebApp.model.Discount;
+import com.example.fawrywebApp.model.DiscountDecorator;
+import com.example.fawrywebApp.model.DiscountType;
 import com.example.fawrywebApp.model.Response;
 import com.example.fawrywebApp.model.Service;
 import com.example.fawrywebApp.model.Transaction;
@@ -44,6 +48,55 @@ public class SpringAdminController {
 		response.setStatus(true);
 		response.setMessage("Transactions retrived succssefully");	
 		return response;	
+	}
+	
+	@PostMapping("/addSpecificDiscount/{uuid}/{discountName}/{serviceName}/{amount}")
+	public Response addSpecificDiscount (@PathVariable ("uuid") UUID uuid ,@PathVariable ("discountName") String discountName ,
+			@PathVariable ("serviceName")String serviceName ,@PathVariable ("amount") int amount) {
+		Response response = new Response();
+		ActiveSessions activeSessions =ActiveSessions.getInstance();
+		if(activeSessions.checkSession(uuid)) {  // if admin had an active session
+			DiscountDecorator discount =new  DiscountDecorator(amount);
+			DiscountController discountController = new DiscountController();
+			discount.type = DiscountType.specific;
+			discount.name = discountName;
+			discount.service = serviceName;
+			discountController.makeDiscount(discount);
+			response.setStatus(true);
+			response.setMessage("Discount : " + discountName + " was added successfully to service " + serviceName);
+			return response;
+		}
+		else { // if admin was not logged in the system
+			response.setStatus(false);
+			response.setMessage("admin with this uuid is not signed in the system");
+			return response;
+		}
+	}
+	
+	@PostMapping("/addOverallDiscount/{uuid}/{discountName}/{minimumTransactions}/{maximumTransactions}/{amount}")
+	public Response addOverallDiscount (@PathVariable ("uuid") UUID uuid ,@PathVariable ("discountName") String discountName ,
+			@PathVariable ("minimumTransactions")int minimumTransactions,@PathVariable ("maximumTransactions")int maximumTransactions ,@PathVariable ("amount") int amount) {
+		Response response = new Response();
+		ActiveSessions activeSessions =ActiveSessions.getInstance();
+		if(activeSessions.checkSession(uuid)) {  // if admin had an active session
+			DiscountDecorator discount =new  DiscountDecorator(amount);
+			DiscountController discountController = new DiscountController();
+			discount.type = DiscountType.overall;
+			discount.name = discountName;
+			discount.minimumTransactions = minimumTransactions;
+			discount.maximumTransactions = maximumTransactions;
+			discountController.makeDiscount(discount);
+			response.setStatus(true);
+			response.setMessage("Discount : " + discountName + " was added successfully to designated users");
+			return response;
+		}
+		else { // if admin was not logged in the system
+			response.setStatus(false);
+			response.setMessage("admin with this uuid is not signed in the system");
+			return response;
+		}
+		
+		
 	}
 }
 
