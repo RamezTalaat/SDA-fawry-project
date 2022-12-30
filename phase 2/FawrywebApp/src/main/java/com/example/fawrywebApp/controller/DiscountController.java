@@ -1,11 +1,15 @@
 package com.example.fawrywebApp.controller;
 
+import java.util.Vector;
+
 import com.example.fawrywebApp.database.DiscountDatabase;
 import com.example.fawrywebApp.database.ServiceDatabase;
 import com.example.fawrywebApp.database.UsersDatabase;
 import com.example.fawrywebApp.model.Discount;
 import com.example.fawrywebApp.model.DiscountDecorator;
 import com.example.fawrywebApp.model.DiscountType;
+import com.example.fawrywebApp.model.OverallDisplayDiscount;
+import com.example.fawrywebApp.model.SpecificDisplayDiscount;
 
 public class DiscountController {
 
@@ -58,5 +62,30 @@ public class DiscountController {
 			System.out.println("Discount name : " + discount.name );
 			System.out.println("Discount amount :" + discount.amount + "$" );
 		}
+	}
+	public Vector<Discount> getDisplayDiscounts(){  // this function is meant to return a vector of discounts that would be displayed -  
+		if(discountDatabase.discounts.isEmpty())   // only with the data that the user is supposed to know about discounts of any type
+			return null;
+		Vector<Discount> displayDiscounts = new Vector<Discount>();
+		for (int i = 0; i < discountDatabase.discounts.size(); i++) {
+			if(discountDatabase.discounts.get(i).type == DiscountType.specific) {
+				SpecificDisplayDiscount discountDisplay = new SpecificDisplayDiscount();
+				
+				discountDisplay.amount = discountDatabase.discounts.get(i).amount;
+				discountDisplay.name = discountDatabase.discounts.get(i).name;
+				discountDisplay.service = discountDatabase.discounts.get(i).service;
+				displayDiscounts.add(discountDisplay);
+			}
+			else {
+				OverallDisplayDiscount discountDisplay = new OverallDisplayDiscount();
+				discountDisplay.amount = discountDatabase.discounts.get(i).amount;
+				discountDisplay.name = discountDatabase.discounts.get(i).name;
+				discountDisplay.minimumTransactions = discountDatabase.discounts.get(i).minimumTransactions;
+				discountDisplay.maximumTransactions = discountDatabase.discounts.get(i).maximumTransactions;
+				displayDiscounts.add(discountDisplay);
+			}
+			
+		}
+		return displayDiscounts;
 	}
 }
