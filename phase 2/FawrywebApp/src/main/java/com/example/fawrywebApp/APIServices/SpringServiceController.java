@@ -5,11 +5,13 @@ import java.util.Vector;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.fawrywebApp.controller.SearchController;
 import com.example.fawrywebApp.database.ActiveSessions;
+import com.example.fawrywebApp.database.ServiceDatabase;
 import com.example.fawrywebApp.model.Response;
 import com.example.fawrywebApp.model.Service;
 
@@ -35,6 +37,28 @@ public class SpringServiceController {
 		response.object = matchingServices;
 		response.setStatus(true);
 		response.setMessage("Matching services was found");
+		return response;
+	}
+	
+	@GetMapping("/listServices/{uuid}")
+	public Response<Vector<Service>> listServices(@PathVariable ("uuid") UUID uuid)
+	{
+		Response<Vector<Service>> response = new Response<Vector<Service>>();
+		if(!ActiveSessions.getInstance().checkSession(uuid)) {
+			response.setStatus(false);
+			response.setMessage("Sorry, there is no such user");
+			return response;
+		}
+		response.setStatus(true);
+		response.setMessage("Done, services retrived successfully");
+		response.object = ServiceDatabase.getInstance().services;
+		return response;
+	}
+	
+	@PostMapping("/payForService/{uuid}")
+	public Response payForService(@PathVariable ("uuid") UUID uuid)
+	{
+		Response response = new Response();
 		return response;
 	}
 }
