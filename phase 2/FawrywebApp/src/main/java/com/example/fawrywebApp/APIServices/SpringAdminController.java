@@ -17,6 +17,7 @@ import com.example.fawrywebApp.controller.SearchController;
 import com.example.fawrywebApp.controller.TransactionController;
 import com.example.fawrywebApp.controller.WalletController;
 import com.example.fawrywebApp.database.ActiveSessions;
+import com.example.fawrywebApp.database.RefundRequestDatabase;
 import com.example.fawrywebApp.model.AddToWallet;
 import com.example.fawrywebApp.model.Admin;
 import com.example.fawrywebApp.model.Discount;
@@ -103,13 +104,34 @@ public class SpringAdminController {
 		
 		
 	}
+	
+	@GetMapping("/listRefundRequests/{uuid}")
+	public Response<Vector<RefundRequest>> listRefundRequests(@PathVariable UUID uuid)
+	{
+		Response<Vector<RefundRequest>> response = new Response<Vector<RefundRequest>>();
+		if(!ActiveSessions.getInstance().checkSession(uuid) || !ActiveSessions.getInstance().getUser(uuid).getType().equals("Admin") ) {
+			response.setStatus(false);
+			response.setMessage("admin with this uuid is not signed in the system");
+			return response;
+		}
+		response.object = RefundRequestDatabase.getInstance().refundRequests;
+		if(response.object.size() == 0) {
+			response.setStatus(true);
+			response.setMessage("Sorry, no refund requests yet!");
+			return response;
+		}
+		response.setStatus(true);
+		response.setMessage("Done, refund requests has been retrived successfully!");
+		return response;
+	}
+	
 	@PostMapping("/acceptOrRejectRefundRequest/{uuid}/{refundRequestID}/{answer}")
 	public Response<Transaction> acceptOrRejectRefundRequest(@PathVariable ("uuid") UUID uuid, @PathVariable ("refundRequestID") int refundRequestID ,@PathVariable ("answer")String answer ) {
 		Response<Transaction> response = new Response<Transaction>(); 
 		ActiveSessions sessions = ActiveSessions.getInstance();
 		RefundRequestController refundRequestController = new RefundRequestController();
 		TransactionController transactionController = new RefundController();
-		if(!sessions.checkSession(uuid) || !sessions.getUser(uuid).getType().equals("admin") ) {
+		if(!sessions.checkSession(uuid) || !sessions.getUser(uuid).getType().equals("Admin") ) {
 			response.setStatus(false);
 			response.setMessage("admin with this uuid is not signed in the system");
 			return response;
