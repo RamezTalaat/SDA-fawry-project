@@ -18,6 +18,7 @@ import com.example.fawrywebApp.controller.TransactionController;
 import com.example.fawrywebApp.controller.WalletController;
 import com.example.fawrywebApp.database.ActiveSessions;
 import com.example.fawrywebApp.database.RefundRequestDatabase;
+import com.example.fawrywebApp.database.ServiceDatabase;
 import com.example.fawrywebApp.model.AddToWallet;
 import com.example.fawrywebApp.model.Admin;
 import com.example.fawrywebApp.model.Discount;
@@ -50,25 +51,31 @@ public class SpringAdminController {
 		}
 		response.object=transactionController.getTransactions();
 		response.setStatus(true);
-		response.setMessage("Transactions retrived succssefully");	
+		response.setMessage("Transactions retrived succssefully");
 		return response;	
 	}
 	
-	@PostMapping("/addSpecificDiscount/{uuid}/{discountName}/{serviceName}/{amount}")
+	@PostMapping("/addSpecificDiscount/{uuid}/{discountName}/{serviceID}/{amount}")
 	public Response addSpecificDiscount (@PathVariable ("uuid") UUID uuid ,@PathVariable ("discountName") String discountName ,
-			@PathVariable ("serviceName")String serviceName ,@PathVariable ("amount") int amount) {
+			@PathVariable ("serviceID")int serviceID ,@PathVariable ("amount") int amount) {
 		Response response = new Response();
 		ActiveSessions activeSessions =ActiveSessions.getInstance();
 		if(activeSessions.checkSession(uuid)) {  // if admin had an active session
+			if(serviceID > 12 || serviceID < 1) {  // to check if service id is true
+				response.setStatus(false);
+				response.setMessage("Sorry, wrong service ID");
+				return response;
+			}
+			ServiceDatabase services = ServiceDatabase.getInstance();
 			System.out.println("Discount "+discountName + " was added to the system"); // for system log purposes
 			DiscountDecorator discount =new  DiscountDecorator(amount);
 			DiscountController discountController = new DiscountController();
 			discount.type = DiscountType.specific;
 			discount.name = discountName;
-			discount.service = serviceName;
+			discount.service = services.services.get(serviceID -1).getName();
 			discountController.makeDiscount(discount);
 			response.setStatus(true);
-			response.setMessage("Discount : " + discountName + " was added successfully to service " + serviceName);
+			response.setMessage("Discount : " + discountName + " was added successfully to service " + discount.service);
 			return response;
 		}
 		else { // if admin was not logged in the system
@@ -134,7 +141,7 @@ public class SpringAdminController {
 		if(!sessions.checkSession(uuid) || !sessions.getUser(uuid).getType().equals("Admin") ) {
 			response.setStatus(false);
 			response.setMessage("admin with this uuid is not signed in the system");
-			return response;
+			return response;	
 		}
 		RefundRequest refundRequest = refundRequestController.getRefundRequest(refundRequestID);
 		if(refundRequest == null) {

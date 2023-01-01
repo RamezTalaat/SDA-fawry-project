@@ -5,4 +5,6 @@ public class DonationService extends Service{
 	{
 		setType("DonationService");
 	}
+
+	
 }

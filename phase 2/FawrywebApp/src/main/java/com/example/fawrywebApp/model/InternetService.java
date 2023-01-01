@@ -5,4 +5,6 @@ public class InternetService extends Service{
 	{
 		setType("InternetService");
 	}
+
+	
 }

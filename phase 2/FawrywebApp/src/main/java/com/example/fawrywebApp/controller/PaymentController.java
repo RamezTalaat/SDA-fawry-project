@@ -2,10 +2,6 @@ package com.example.fawrywebApp.controller;
 import com.example.fawrywebApp.model.*;
 
 public abstract class PaymentController extends TransactionController{
-	/*public PaymentController(TransactionDataBase _transactionDataBase) {
-		super(_transactionDataBase);
-		// TODO Auto-generated constructor stub
-	}*/
 
 	@Override
 	public abstract Transaction createTransaction();

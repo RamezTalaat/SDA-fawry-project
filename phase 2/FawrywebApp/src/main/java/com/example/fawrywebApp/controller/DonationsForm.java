@@ -36,6 +36,7 @@ public class DonationsForm extends Form{
 	}
 
 	public void setForm(DummyForm dummyForm) {
+		availablePaymentMethod = "Wallet & CreditCard & Cash on delivery";
 		amount = dummyForm.amount;
 		organizationName = dummyForm.organizationName;
 		paymentMethod = dummyForm.paymentMethod;

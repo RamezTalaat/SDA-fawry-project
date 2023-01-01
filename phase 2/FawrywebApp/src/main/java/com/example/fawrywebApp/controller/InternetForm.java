@@ -35,6 +35,7 @@ public class InternetForm extends Form{
 
 	@Override
 	public void setForm(DummyForm dummyForm) {
+		availablePaymentMethod = "Wallet & CreditCard";
 		amount = dummyForm.amount;
 		homeTelephoneNumber = dummyForm.homeTelephoneNumber;
 		paymentMethod = dummyForm.paymentMethod;

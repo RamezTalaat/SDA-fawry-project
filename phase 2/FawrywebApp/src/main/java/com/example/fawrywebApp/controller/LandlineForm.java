@@ -13,7 +13,7 @@ public class LandlineForm extends Form {
 
 	Scanner input = new Scanner(System.in);
 	public String landlineNumber;
-	private String receipt;
+	public String receipt;
 	public void setReceipt(String receipt_)
 	{
 		receipt = receipt_;
@@ -22,6 +22,7 @@ public class LandlineForm extends Form {
 	{
 		return receipt;
 	}
+	@Override
 	public Receipt returnReceipt()
 	{
 		if(receipt == "Quarter") {
@@ -55,6 +56,7 @@ public class LandlineForm extends Form {
 	}
 	@Override
 	public void setForm(DummyForm dummyForm) {
+		availablePaymentMethod = "Wallet & CreditCard & Cash on delivery";
 		amount = dummyForm.amount;
 		landlineNumber = dummyForm.landlineNumber;
 		receipt = dummyForm.receipt;

@@ -7,6 +7,7 @@ import com.example.fawrywebApp.controller.WalletController;
 import com.example.fawrywebApp.database.ActiveSessions;
 import com.example.fawrywebApp.database.DiscountDatabase;
 import com.example.fawrywebApp.model.Discount;
+import com.example.fawrywebApp.model.IGeneralUser;
 import com.example.fawrywebApp.model.RefundRequest;
 import com.example.fawrywebApp.model.Response;
 import com.example.fawrywebApp.model.Transaction;
@@ -21,10 +22,10 @@ import java.util.Vector;
 public class SpringUserController 
 {
     @GetMapping("/getUserInfo")
-    public Response getUserInfo(@RequestBody User user){
+    public Response<IGeneralUser> getUserInfo(@RequestBody User user){
         System.out.println("in get user info");
         ActiveSessions sessions = ActiveSessions.getInstance();
-        Response response = new Response();
+        Response<IGeneralUser> response = new Response<IGeneralUser>();
         response.object = sessions.checkSessionByUser(user);
         if(response.object == null) {
         	response.setStatus(false);

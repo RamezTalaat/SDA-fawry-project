@@ -15,6 +15,7 @@ public abstract  class TransactionController {
 			transaction.setUserName(user.getName());
 			transaction.setUserMail(user.getMail());
 			if(transaction.type.equals("paymentTransaction")) {
+				System.out.println("setting service");
 				transaction.setService(service);
 			}
 			addTransactionToDatabase(transaction);
@@ -25,7 +26,7 @@ public abstract  class TransactionController {
 		return state;
 		// if true or false
 	}
-	public abstract Boolean makeTransaction(User user, int amount , Transaction transaction, Service service);  
+	public abstract Boolean makeTransaction(User user, int amount , Transaction transaction, Service service);
 	public abstract Transaction createTransaction();  // factory method
 	public void addTransactionToDatabase(Transaction transaction) {
 		transactionDatabase.addTransaction(transaction);

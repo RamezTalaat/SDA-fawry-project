@@ -152,6 +152,7 @@ public class SpringServiceController {
 			return response;
 		}
 		service.setHandler(null);
+		service.setForm(null);
 		response.setStatus(true);
 		response.setMessage("Done, transaction has been completed successfully!");
 		return response;

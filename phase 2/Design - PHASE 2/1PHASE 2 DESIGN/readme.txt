@@ -1,0 +1,2 @@
+regarding the get active sessions sequence diagram , to check if user's session is active.
+we did not include it in all other sequence diagram so as not to complicate the models , so we made it as a separate sequence diagram meant to part of all other diagrams
