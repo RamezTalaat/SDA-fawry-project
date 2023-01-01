@@ -10,9 +10,4 @@ public class LandlineService extends Service{
 	{
 		receipt=receipt_;
 	}
-	public void payForService(User user) {
-		form.viewForm();
-		handler.handleForm(form, user, this);
-		receipt.getReceipt();
-	}
 }

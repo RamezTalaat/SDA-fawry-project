@@ -24,28 +24,24 @@ public class MobileForm extends Form{
 	}
 
 	@Override
-	public PaymentController getPaymentMethod() {
-		System.out.println("Do you to change payment method to pay with wallet? 'Credit Card by default' (answer with yes or no)");
-		while(true) {
-			String answer = input.next();
-			if(answer.equals("yes")) {
-				return new WalletPayment();
-			}
-			else if(!answer.equals("no")) {
-				System.out.println("Sorry, Ivalid input");
-				System.out.println("Please enter another choice");
-			}
-			else {
-				break;
-			}
+	public PaymentController returnPaymentMethod() {
+		if(paymentMethod.equals("Wallet")) {
+			return new WalletPayment();
 		}
 		return new CreditCardPayment();
 	}
 
 	@Override
 	public void getForm() {
-		// TODO Auto-generated method stub
 		System.out.println("mobile number: "+mobileNumber);
 		System.out.println("amount: "+getAmount());
+	}
+
+	@Override
+	public void setForm(DummyForm dummyForm) {
+		amount = dummyForm.amount;
+		mobileNumber = dummyForm.mobileNumber;
+		paymentMethod = dummyForm.paymentMethod;
+		
 	}
 }

@@ -4,16 +4,31 @@ import java.util.Scanner;
 
 import com.example.fawrywebApp.model.CashPayment;
 import com.example.fawrywebApp.model.CreditCardPayment;
+import com.example.fawrywebApp.model.MonthlyReceipt;
+import com.example.fawrywebApp.model.QuarterReceipt;
+import com.example.fawrywebApp.model.Receipt;
 import com.example.fawrywebApp.model.WalletPayment;
 
 public class LandlineForm extends Form {
 
-	/*public LandlineForm(TransactionDataBase transactionDataBase) {
-		super(transactionDataBase);
-		// TODO Auto-generated constructor stub
-	}*/
 	Scanner input = new Scanner(System.in);
 	public String landlineNumber;
+	private String receipt;
+	public void setReceipt(String receipt_)
+	{
+		receipt = receipt_;
+	}
+	public String getReceipt()
+	{
+		return receipt;
+	}
+	public Receipt returnReceipt()
+	{
+		if(receipt == "Quarter") {
+			return new QuarterReceipt();
+		}
+		return new MonthlyReceipt();
+	}
 	@Override
 	public void viewForm() {
 		// TODO Auto-generated method stub
@@ -24,40 +39,25 @@ public class LandlineForm extends Form {
 		setAmount(amount_);
 	}
 	@Override
-	public PaymentController getPaymentMethod() {
-		while(true) {
-			System.out.println("Do you to change payment method 'Credit Card by default' (answer with yes or no)");
-			String answer = input.next();
-			if(answer.equals("yes")) {
-				System.out.println("choose one of the following options:- ");
-				System.out.println("1- Change payment method to pay with your wallet");
-				System.out.println("2- Change payment method to pay cash (cash on delivery)");
-				while(true) {
-					int option = input.nextInt();
-					if(option == 1) {
-						return new WalletPayment();
-					}
-					else if(option == 2) {
-						return new CashPayment();
-					}
-					System.out.println("Sorry, Ivalid input");
-					System.out.println("Please enter another choice");
-				}
-			}
-			else if(!answer.equals("no")) {
-				System.out.println("Sorry, Ivalid input");
-				System.out.println("Please enter another choice");
-			}
-			else {
-				break;
-			}
+	public PaymentController returnPaymentMethod() {
+		if(paymentMethod.equals("Wallet")) {
+			return new WalletPayment();
+		}
+		else if(paymentMethod.equals("Cash")) {
+			return new CashPayment();
 		}
 		return new CreditCardPayment();
 	}
 	@Override
 	public void getForm() {
-		// TODO Auto-generated method stub
 		System.out.println("Landline number: "+landlineNumber);
 		System.out.println("amount: "+getAmount());
+	}
+	@Override
+	public void setForm(DummyForm dummyForm) {
+		amount = dummyForm.amount;
+		landlineNumber = dummyForm.landlineNumber;
+		receipt = dummyForm.receipt;
+		paymentMethod = dummyForm.paymentMethod;
 	}
 }

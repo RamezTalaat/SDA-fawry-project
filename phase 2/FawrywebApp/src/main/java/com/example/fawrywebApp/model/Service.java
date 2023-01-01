@@ -1,6 +1,9 @@
 package com.example.fawrywebApp.model;
+import com.example.fawrywebApp.controller.Handler;
 
 import java.util.Scanner;
+
+import com.example.fawrywebApp.controller.Form;
 
 public class Service {
 	Scanner input = new Scanner(System.in);
@@ -9,7 +12,10 @@ public class Service {
 	public Discount discount;
 	public Form form;
 	public Handler handler;
+	private int ID;
+    private static int idCount = 0;
 	public Service() {
+		ID = ++idCount;
 		discount = new InitialDiscount(); // to initialize services discounts
 	}
 	
@@ -49,15 +55,11 @@ public class Service {
 	{
 		
 	}
-	/*public void getServices(Service service) 
-	{
-		System.out.println("Type: ");
-		String name;
-		name = input.next();
-	}*/
-	public void payForService(User user) {
-		form.viewForm();
-		handler.handleForm(form, user, this);
+	public boolean payForService(User user) {
+		return handler.handleForm(form, user, this);
+	}
+	public int getID() {
+		return ID;
 	}
 }
 

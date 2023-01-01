@@ -1,14 +1,12 @@
 package com.example.fawrywebApp.controller;
 
+import com.example.fawrywebApp.model.Receipt;
+
 public abstract class Form {
-	private int amount;
-	//public PaymentController paymentMethod;
-	//public TransactionDataBase transactionDataBase;
-	/*public abstract void viewForm();
-	public abstract Payment getPaymentMethod(); */
+	protected int amount;
+	protected String paymentMethod;
 	public Form() {
-		//transactionDataBase = TransactionDataBase.getInstance(); 
-		//paymentMethod = new CreditCardPayment(transactionDataBase);
+		
 	}
 	public void setAmount(int amount_)
 	{
@@ -17,7 +15,21 @@ public abstract class Form {
 	public int getAmount() {
 		return amount;
 	}
+	public void setPaymentMethod(String paymentMethod_)
+	{
+		paymentMethod = paymentMethod_;
+	}
+	public String getPaymentMethod()
+	{
+		return paymentMethod;
+	}
+	public Receipt returnReceipt()
+	{
+		return null;
+	}
+	public abstract void setForm(DummyForm dummyForm);
 	public abstract void viewForm();
-	public abstract PaymentController getPaymentMethod();
+	public abstract PaymentController returnPaymentMethod();
 	public abstract void getForm();
+	
 }

@@ -6,9 +6,6 @@ import java.util.Vector;
 import com.example.fawrywebApp.database.TransactionDataBase;
 public abstract  class TransactionController {
 	public TransactionDataBase transactionDatabase = TransactionDataBase.getInstance();
-	/*public TransactionController (TransactionDataBase _transactionDataBase) {
-		transactionDatabase = _transactionDataBase;
-	}*/
 	public Boolean setTransaction(User user, int amount , Transaction _transaction, Service service) { 
 		Boolean state =makeTransaction(user, amount, _transaction, service); ////////////
 		if (state) {

@@ -1,34 +1,23 @@
 package com.example.fawrywebApp.APIServices;
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 import java.util.UUID;
 
 import com.example.fawrywebApp.controller.RegistrationController;
 import com.example.fawrywebApp.database.ActiveSessions;
 import com.example.fawrywebApp.model.User;
 import com.example.fawrywebApp.model.Admin;
-//import com.example.fawrywebApp.service.PersonService;
-//import com.example.fawrywebApp.service.PersonServiceImpl;
 import com.example.fawrywebApp.model.Response;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/RegistrationController")
 public class SpringRegistrationController {
-
-    //@Autowired
-    //PersonService personService = new PersonServiceImpl();
 
     @PostMapping("/signUp")
     public Response signUp(@RequestBody User user){

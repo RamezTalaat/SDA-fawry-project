@@ -2,15 +2,11 @@ package com.example.fawrywebApp.APIServices;
 
 import com.example.fawrywebApp.controller.DiscountController;
 import com.example.fawrywebApp.controller.RefundRequestController;
-import com.example.fawrywebApp.controller.RegistrationController;
 import com.example.fawrywebApp.controller.TransactionController;
 import com.example.fawrywebApp.controller.WalletController;
 import com.example.fawrywebApp.database.ActiveSessions;
 import com.example.fawrywebApp.database.DiscountDatabase;
-import com.example.fawrywebApp.database.UsersDatabase;
 import com.example.fawrywebApp.model.Discount;
-import com.example.fawrywebApp.model.DiscountDecorator;
-import com.example.fawrywebApp.model.IGeneralUser;
 import com.example.fawrywebApp.model.RefundRequest;
 import com.example.fawrywebApp.model.Response;
 import com.example.fawrywebApp.model.Transaction;
@@ -74,7 +70,7 @@ public class SpringUserController
     public Response<Vector<Transaction>> getUserTransaction(@PathVariable ("uuid") UUID uuid)
     {
     	Response<Vector<Transaction>> response = new Response<Vector<Transaction>>();
-    	if(!ActiveSessions.getInstance().checkSession(uuid)) {
+    	if(!ActiveSessions.getInstance().checkSession(uuid) || ActiveSessions.getInstance().getUser(uuid).getType().equals("Admin")) {
     		response.setStatus(false);
     		response.setMessage("User not logged in , please log in first");
     		return response;

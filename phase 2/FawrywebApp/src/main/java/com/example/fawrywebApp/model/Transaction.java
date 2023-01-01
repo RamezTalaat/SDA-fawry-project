@@ -25,6 +25,7 @@ public abstract class Transaction {
 }*/
 package com.example.fawrywebApp.model;
 
+import com.example.fawrywebApp.controller.Form;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /*enum transactionType
@@ -90,4 +91,8 @@ public abstract class Transaction {
 		 return ID;
 	 }
 }
+
+
+
+
 

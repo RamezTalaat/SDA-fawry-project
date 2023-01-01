@@ -6,16 +6,11 @@ import com.example.fawrywebApp.model.CreditCardPayment;
 import com.example.fawrywebApp.model.WalletPayment;
 
 public class InternetForm extends Form{
-	/*public InternetForm(TransactionDataBase transactionDataBase) {
-		super(transactionDataBase);
-		// TODO Auto-generated constructor stub
-	}*/
 
-	Scanner input = new Scanner(System.in);
 	public String homeTelephoneNumber;
+	Scanner input = new Scanner(System.in);
 	@Override
 	public void viewForm() {
-		// TODO Auto-generated method stub
 		System.out.println("Enter your home telephone number");
 		homeTelephoneNumber = input.next();
 		System.out.println("Enter the amount");
@@ -24,28 +19,24 @@ public class InternetForm extends Form{
 	}
 
 	@Override
-	public PaymentController getPaymentMethod() {
-		System.out.println("Do you to change payment method to pay with wallet? 'Credit Card by default' (answer with yes or no)");
-		while(true) {
-			String answer = input.next();
-			if(answer.equals("yes")) {
-				return new WalletPayment();
-			}
-			else if(!answer.equals("no")) {
-				System.out.println("Sorry, Ivalid input");
-				System.out.println("Please enter another choice");
-			}
-			else {
-				break;
-			}
+	public PaymentController returnPaymentMethod() {
+		if(paymentMethod.equals("Wallet")) {
+			return new WalletPayment();
 		}
+		System.out.println("creditCard payment");
 		return new CreditCardPayment();
 	}
 
 	@Override
 	public void getForm() {
-		// TODO Auto-generated method stub
 		System.out.println("home telephone number: "+homeTelephoneNumber);
 		System.out.println("amount: "+getAmount());
+	}
+
+	@Override
+	public void setForm(DummyForm dummyForm) {
+		amount = dummyForm.amount;
+		homeTelephoneNumber = dummyForm.homeTelephoneNumber;
+		paymentMethod = dummyForm.paymentMethod;
 	}
 }

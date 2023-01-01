@@ -37,7 +37,7 @@ public class SpringAdminController {
 	{
 		Response<Vector<Transaction>> response=new Response<Vector<Transaction>>();
 		ActiveSessions activeSessions=ActiveSessions.getInstance();
-		if(!activeSessions.checkSession(uuid) || activeSessions.getUser(uuid).getType()=="User") {
+		if(!activeSessions.checkSession(uuid) || activeSessions.getUser(uuid).getType().equals("User")) {
 			response.setStatus(false);
 			response.setMessage("Sorry, you are not an admin!");
 			return response;
@@ -160,20 +160,5 @@ public class SpringAdminController {
 		return response;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

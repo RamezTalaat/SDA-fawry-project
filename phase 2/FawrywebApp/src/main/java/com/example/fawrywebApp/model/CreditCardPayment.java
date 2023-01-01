@@ -13,7 +13,7 @@ public class CreditCardPayment extends PaymentController{
 	public Transaction createTransaction() {
 		// TODO Auto-generated method stub
 		Payment payment = new Payment();
-		payment.setPaymentType("WalletPayment");
+		payment.setPaymentType("CreditCardPayment");
 		return payment;
 	}
 

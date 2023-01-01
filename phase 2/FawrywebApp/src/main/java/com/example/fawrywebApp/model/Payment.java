@@ -1,5 +1,6 @@
 package com.example.fawrywebApp.model;
 
+
 public class Payment extends Transaction {
 	
 	Service	service;

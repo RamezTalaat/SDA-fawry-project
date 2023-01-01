@@ -69,4 +69,20 @@ public class SearchController {
 		}
 		return searchedServices;
 	}
+	public Service getService(int ID)
+	{
+		for(int i=0; i<ServiceDatabase.getInstance().services.size(); i++) {
+			if(ID == ServiceDatabase.getInstance().services.get(i).getID()) {
+				return ServiceDatabase.getInstance().services.get(i);
+			}
+		}
+		return null;
+	}
 }
+
+
+
+
+
+
+
