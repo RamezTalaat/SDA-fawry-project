@@ -74,8 +74,8 @@ public class SpringRegistrationController {
         return response;
 
     }
-    @DeleteMapping("/logOut/{uuid}")
-    public Response logOut(@PathVariable("uuid") UUID uuid) {
+    @DeleteMapping("/signOut/{uuid}")
+    public Response signOut(@PathVariable("uuid") UUID uuid) {
     	System.out.println("user log out");
     	Response response = new Response();
     	ActiveSessions sessionsDatabase = ActiveSessions.getInstance(); 
