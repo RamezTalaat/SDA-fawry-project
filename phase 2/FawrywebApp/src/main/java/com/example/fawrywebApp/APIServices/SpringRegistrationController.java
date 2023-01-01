@@ -92,24 +92,17 @@ public class SpringRegistrationController {
     }
 
     @PostMapping("/signInAsAdmin")
-    public Response signIn(@RequestBody Admin admin){
+    public Response<UUID> signIn(@RequestBody Admin admin){  // Generates a new UUID each time an admin enters the name, mail and password properly
         Admin adminData  = new Admin();
         adminData.setName("admin");   //default admin data
         adminData.setPassword("admin");
         adminData.setMail("admin@gmail.com");
-
         System.out.println("in admin sign in");
-        Response response = new Response();
+        Response<UUID> response = new Response<UUID>();
         ActiveSessions sessionsDatabase = ActiveSessions.getInstance();
-        if(sessionsDatabase.checkUserSession(admin)){    //if ADMIN is already signed in
-            response.setStatus(false);
-            response.setMessage("user " + admin.getMail() + " is already signed in");
-            return response;
-        }
-        if (admin.getName().equals(adminData.getName()) || admin.getMail().equals(adminData.getMail()) ||admin.getPassword().equals(adminData.getPassword())  ){
+        if (admin.getName().equals(adminData.getName()) && admin.getMail().equals(adminData.getMail()) && admin.getPassword().equals(adminData.getPassword())){
         	UUID uuid=UUID.randomUUID();   // to generate random session
             sessionsDatabase.addSession(uuid , adminData);
-
             System.out.println("Done, admin logged in successfully!");
             response.setStatus(true);
             response.setMessage("Welcome welcome dear admin");
@@ -117,11 +110,9 @@ public class SpringRegistrationController {
             sessionsDatabase.printDatabase();
             return response;
         }
-
         response.setStatus(false);
         response.setMessage("Wrong admin credentials , access denied");
         return response;
-
     }
     @DeleteMapping("/signOutAsAdmin/{uuid}")
     public Response signOutAsAdmin (@PathVariable("uuid") UUID uuid){

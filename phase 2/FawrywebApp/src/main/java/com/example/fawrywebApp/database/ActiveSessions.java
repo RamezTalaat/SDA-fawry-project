@@ -1,15 +1,11 @@
 package com.example.fawrywebApp.database;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.example.fawrywebApp.model.IGeneralUser;
-import com.example.fawrywebApp.model.Person;
 import com.example.fawrywebApp.model.User;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.UUID;
-import java.util.Vector;
 
 public class ActiveSessions {
     public static Map<UUID, IGeneralUser> sessions;
@@ -50,7 +46,7 @@ public class ActiveSessions {
         return sessions.get(uuid);
     }
     public UUID getUUID (IGeneralUser user){
-        for (Map.Entry mp : sessions.entrySet()) {
+        for (Map.Entry<UUID, IGeneralUser> mp : sessions.entrySet()) {
             User tmp = (User) mp.getValue();
             if(tmp.getMail().equals(user.getMail()) ){
                 return (UUID) mp.getKey();
@@ -61,19 +57,18 @@ public class ActiveSessions {
     public boolean checkUserSession(IGeneralUser user){
 
         System.out.println("checking request owner : " + user.getName());
-        for (Map.Entry mp : sessions.entrySet()) {
-            User tmp = (User) mp.getValue();
+        for (Map.Entry<UUID, IGeneralUser> mp : sessions.entrySet()) {
+            IGeneralUser tmp = mp.getValue();
             if(tmp.getMail().equals(user.getMail()) ){
                 return true;
             }
         }
-
         return false;
     }
-
+    
     public void printDatabase() {
         IGeneralUser tmpUser;
-        for (Map.Entry mp : sessions.entrySet()) {
+        for (Map.Entry<UUID, IGeneralUser> mp : sessions.entrySet()) {
             tmpUser =  (IGeneralUser) mp.getValue();
             System.out.println(mp.getKey() + "-> " + tmpUser.getName());
         }
