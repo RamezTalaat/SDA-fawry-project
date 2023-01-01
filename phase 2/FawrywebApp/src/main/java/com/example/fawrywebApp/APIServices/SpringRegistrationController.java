@@ -118,7 +118,7 @@ public class SpringRegistrationController {
     public Response signOutAsAdmin (@PathVariable("uuid") UUID uuid){
     	Response response = new Response();
         ActiveSessions activeSessions = ActiveSessions.getInstance();
-        if(activeSessions.checkSession(uuid)) {  // if admin is already loged in
+        if(activeSessions.checkSession(uuid)) {  // if admin is already logged in
         	activeSessions.removeSession(uuid);
         	response.setStatus(true);
         	response.setMessage("Admin signed out successfully");
@@ -127,9 +127,6 @@ public class SpringRegistrationController {
         response.setStatus(false);
         response.setMessage("Admin with uuid " + uuid + " was not signed in the system");
         return response;
-
-        
-
     }
 
 }

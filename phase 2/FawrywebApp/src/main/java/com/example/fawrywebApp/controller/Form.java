@@ -4,6 +4,7 @@ import com.example.fawrywebApp.model.Receipt;
 
 public abstract class Form {
 	protected int amount;
+	protected String availablePaymentMethod;
 	protected String paymentMethod;
 	public Form() {
 		
@@ -26,6 +27,10 @@ public abstract class Form {
 	public Receipt returnReceipt()
 	{
 		return null;
+	}
+	public void setAvailablePaymentMethod()
+	{
+		
 	}
 	public abstract void setForm(DummyForm dummyForm);
 	public abstract void viewForm();

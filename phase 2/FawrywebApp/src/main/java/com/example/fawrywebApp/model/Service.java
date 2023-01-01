@@ -58,8 +58,15 @@ public class Service {
 	public boolean payForService(User user) {
 		return handler.handleForm(form, user, this);
 	}
+	public void setID(int ID_)
+	{
+		ID = ID_;
+	}
 	public int getID() {
 		return ID;
+	}
+	public  Service getClassType() {
+		return null;
 	}
 }
 

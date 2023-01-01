@@ -50,7 +50,7 @@ public class SpringAdminController {
 		}
 		response.object=transactionController.getTransactions();
 		response.setStatus(true);
-		response.setMessage("Transactions retrived succssefully");	
+		response.setMessage("Transactions retrived succssefully");
 		return response;	
 	}
 	

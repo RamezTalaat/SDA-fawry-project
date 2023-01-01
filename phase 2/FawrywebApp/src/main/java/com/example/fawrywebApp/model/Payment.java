@@ -17,12 +17,4 @@ public class Payment extends Transaction {
 	{
 		return paymentType;
 	}
-	public void setService(Service service_)
-	{
-		service = service_;
-	}
-	public Service getService()
-	{
-		return service;
-	}
 }

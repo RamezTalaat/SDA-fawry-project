@@ -39,6 +39,7 @@ public class MobileForm extends Form{
 
 	@Override
 	public void setForm(DummyForm dummyForm) {
+		availablePaymentMethod = "Wallet & CreditCard";
 		amount = dummyForm.amount;
 		mobileNumber = dummyForm.mobileNumber;
 		paymentMethod = dummyForm.paymentMethod;
