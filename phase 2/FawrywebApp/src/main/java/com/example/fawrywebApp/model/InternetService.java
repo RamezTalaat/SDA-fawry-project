@@ -6,8 +6,5 @@ public class InternetService extends Service{
 		setType("InternetService");
 	}
 
-	@Override
-	public Service getClassType() {
-		return new InternetService();
-	}
+	
 }

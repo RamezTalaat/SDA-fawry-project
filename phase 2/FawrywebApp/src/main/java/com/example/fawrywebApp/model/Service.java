@@ -65,8 +65,6 @@ public class Service {
 	public int getID() {
 		return ID;
 	}
-	public  Service getClassType() {
-		return null;
-	}
+	
 }
 

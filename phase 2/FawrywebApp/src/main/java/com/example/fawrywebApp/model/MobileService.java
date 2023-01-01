@@ -6,8 +6,4 @@ public class MobileService extends Service{
 		setType("MobileService");
 	}
 
-	@Override
-	public Service getClassType() {
-		return new MobileService();
-	}
 }

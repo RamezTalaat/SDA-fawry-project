@@ -6,8 +6,5 @@ public class DonationService extends Service{
 		setType("DonationService");
 	}
 
-	@Override
-	public Service getClassType() {
-		return new DonationService();
-	}
+	
 }

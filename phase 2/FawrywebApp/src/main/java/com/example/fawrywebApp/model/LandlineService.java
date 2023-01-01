@@ -15,8 +15,6 @@ public class LandlineService extends Service{
 	{
 		return receipt;
 	}
-	@Override
-	public Service getClassType() {
-		return new LandlineService();
-	}
+	
+	
 }
