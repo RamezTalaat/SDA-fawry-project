@@ -7,12 +7,14 @@ which uses JSON requests to communicate with users to do the same functionalitie
 you will find the system's design (class diagram and sequence diagrams in the first phase and second phase folders , 
 documenting the various stages that the system underwent during development)
 
-This project's contributers are :
-Hazim Emam Muhammed Ali
-Omar Rafaat Ali Hammad
-Khaled Ahmed Sayed Hashem
-Ramez Ehab Talaat
+## This Project's Contributers
 
-Under the supervision of:
-Dr. Soha Makady (Cairo University)
-Eng . Hassan Mourad (Cairo University)
+- Hazim Emam Muhammed Ali
+- Omar Rafaat Ali Hammad
+- Khaled Ahmed Sayed Hashem
+- Ramez Ehab Talaat
+
+## Under the supervision of
+
+- Dr. Soha Makady (Cairo University)
+- Eng . Hassan Mourad (Cairo University)
